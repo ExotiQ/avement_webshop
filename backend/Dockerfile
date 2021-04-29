@@ -1,6 +1,4 @@
 FROM node:latest
-WORKDIR /data/
-RUN npm
-EXPOSE 8080
+WORKDIR /data
 
-CMD ["npm", "dev"]
+CMD npm install && npm dev

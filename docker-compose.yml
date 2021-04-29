@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  frontend:
+    container_name: avement_webshop_frontend
+    build: ./frontend
+    ports:
+      - 8080:8080
+    volumes:
+      - ./frontend:/data
+
+  backend:
+    container_name: avement_webshop_backend
+    build: ./backend
+    ports:
+      - 4000:4000
+    volumes:
+      - ./backend:/data
+    depends_on: 
+      - postgres
+    environment:
+      API_URL: http://backend:4000/
+      DATABASE_URL: postgres://avement@postgres/
+    
+  mongo:
+    container_name: avement_webshop_postgres
+    image: postgres:9.6.2-alpine
+    ports:
+      - 27017:27017
+    volumes:
+       - ./db:/data/db

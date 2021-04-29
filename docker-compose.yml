@@ -1,5 +1,10 @@
 version: "3"
 
+x-database: &postgres-credentials
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: admin
+  POSTGRES_DB: avement
+
 services:
   frontend:
     container_name: avement_webshop_frontend
@@ -8,24 +13,35 @@ services:
       - 8080:8080
     volumes:
       - ./frontend:/data
+      - /data/node_modules
 
   backend:
     container_name: avement_webshop_backend
     build: ./backend
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      <<: *postgres-credentials
     ports:
       - 4000:4000
     volumes:
       - ./backend:/data
+      - /data/node_modules
     depends_on: 
       - postgres
-    environment:
-      API_URL: http://backend:4000/
-      DATABASE_URL: postgres://avement@postgres/
-    
-  mongo:
+  
+  # SQL Shell:
+  # docker-compose exec postgres psql -U admin -d avement 
+  postgres:
     container_name: avement_webshop_postgres
-    image: postgres:9.6.2-alpine
+    image: postgres:13
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      <<: *postgres-credentials
     ports:
-      - 27017:27017
+      - 5432:5432
     volumes:
-       - ./db:/data/db
+      - avement_webshop_postgres_volume:/var/lib/postgresql/data
+
+volumes:
+  avement_webshop_postgres_volume:

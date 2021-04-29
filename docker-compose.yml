@@ -9,6 +9,8 @@ services:
   frontend:
     container_name: avement_webshop_frontend
     build: ./frontend
+    environment:
+      API_URL: http://backend:4000/
     ports:
       - 8080:8080
     volumes:

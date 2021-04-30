@@ -4,7 +4,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./server.js",
-    "dev": "nodemon ./server.js"
+    "dev": "nodemon ./server.js",
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:g:migration": "sequelize-cli migration:generate --name"
   },
   "keywords": [],
   "author": "",

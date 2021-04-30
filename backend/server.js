@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 require('dotenv').config();
 
-const port = process.env.PORT || 4000;
-const postgresURI = process.env.DATABASE_URL;
+const { PORT, DATABASE_URL } = process.env;
+
+const port = PORT || 4000;
+const postgresURI = DATABASE_URL;
 
 const Items = require("./routes/Items");
 app.use("/api/items", Items);

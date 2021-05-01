@@ -17,9 +17,9 @@ async function main() {
   // });
 
   // await User.create({
-  //   firstName: "Luis",
-  //   lastName: "Schweigard",
-  //   email: "luis@schweigard.com"
+  // firstName: "Luis",
+  // lastName: "Schweigard",
+  // email: "luis@schweigard.com"
   // });
 
   console.log(JSON.stringify(await User.findAll(), null, 2))

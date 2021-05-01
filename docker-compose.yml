@@ -4,6 +4,7 @@ x-database: &postgres-credentials
   POSTGRES_USER: admin
   POSTGRES_PASSWORD: admin
   POSTGRES_DB: avement
+  POSTGRES_HOST: postgres
 
 services:
   frontend:

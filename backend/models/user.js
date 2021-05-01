@@ -4,9 +4,25 @@ const sequelize = require('../config/database');
 class User extends Model {}
 
 User.init({
-  firstName: DataTypes.STRING,
-  lastName: DataTypes.STRING,
-  email: DataTypes.STRING
-}, { sequelize, modelName: 'users' });
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+}, { 
+  sequelize,
+  modelName: 'users' 
+});
 
 module.exports = User;

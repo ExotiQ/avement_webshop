@@ -29,7 +29,8 @@ auth.post('/register', async function (req, res) {
       await User.create({
         firstName: req.body.name,
         lastName: req.body.lastname,
-        email: req.body.email
+        email: req.body.email,
+        password: req.body.password,
         });
         res.status(200).json("registered");
     } else {
@@ -40,6 +41,10 @@ auth.post('/register', async function (req, res) {
 
 auth.get('/list', async function (req, res) {
   res.status(200).json(await User.findAll(), null, 2);
+})
+
+auth.get('/test', async function (req, res) {
+  res.status(200).json("FLO HAT DAS GERADE HIN");
 })
 
 module.exports = auth;

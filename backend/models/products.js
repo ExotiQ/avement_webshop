@@ -19,7 +19,7 @@ Products.init({
   productSizes: {
     type: DataTypes.ARRAY(DataTypes.STRING),
     allowNull: false
-  },
+  }
 }, { 
   sequelize,
   modelName: 'Products' 

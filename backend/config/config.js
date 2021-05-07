@@ -3,9 +3,9 @@ const { POSTGRES_HOST, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB } = process
 
 module.exports = {
   "development": {
-    "username": process.env.POSTGRES_USER,
-    "password": process.env.POSTGRES_PASSWORD,
-    "database": process.env.POSTGRES_DB,
+    "username": "admin",
+    "password": "admin",
+    "database": "avement",
     "host": "0.0.0.0",
     "dialect": "postgres"
   },

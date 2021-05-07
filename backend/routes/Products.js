@@ -3,6 +3,8 @@ const products = express.Router();
 const db = require('../config/database');
 const Products = require("../models/products");
 
+const authentificate = require('../middleware/authentification.js')
+
 products.use(express.json());
 
 async function main() {
@@ -10,21 +12,37 @@ async function main() {
   await db.sync()
 }
 
+// LIST ALL PRODUCTS
 products.get('/list', async function (req, res) {
   res.status(200).json(await Products.findAll(), null, 2);
 })
 
-products.get('/add', async function (req, res) {
+// GET PRODUCT BY ID
+products.get('/:id', async function (req, res) {
+  const id = req.params.id;
+  const product = await Products.findOne({ where: { id: id } });
+  if(product !== null) res.status(200).json(product);
+  else res.status(400).json("NO PRODUCT WITH ID");
+})
+
+// ADD PRODUCT
+products.post('/add',authentificate, async function (req, res) {
+  const { productName, productDesc, productPrice, productSizes  } = req.body;
   await Products.create({
-    productName: "TEST PRODUCT",
-    productDesc: "DESCRIPTION",
-    productPrice: "10€",
-    productSizes: ["S","M","L","XL"]
+    productName: productName,
+    productDesc: productDesc,
+    productPrice: productPrice,
+    productSizes: productSizes
   });
 
   res.status(200).json("PRODUCT ADDED");
 })
 
-
+// REMOVE PRODUCT BY ID
+products.post('/remove/:id',authentificate, async function (req, res) {
+  const id = req.params.id;
+  Products.destroy({ where: { id: id } })
+  res.status(200).json("PRODUCT REMOVED");
+})
 
 module.exports = products;

@@ -20,6 +20,11 @@ User.init({
     type: DataTypes.STRING,
     allowNull: false
   },
+  admin: {
+    type: Sequelize.BOOLEAN, 
+    allowNull: false, 
+    defaultValue: false
+  },
 }, { 
   sequelize,
   modelName: 'Users' 

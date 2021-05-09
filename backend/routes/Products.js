@@ -2,6 +2,7 @@ const express = require("express");
 const products = express.Router();
 const db = require('../config/database');
 const Products = require("../models/products");
+const User = require('../models/user');
 
 const authentificate = require('../middleware/authentification.js')
 
@@ -28,14 +29,37 @@ products.get('/:id', async function (req, res) {
 // ADD PRODUCT
 products.post('/add',authentificate, async function (req, res) {
   const { productName, productDesc, productPrice, productSizes  } = req.body;
-  await Products.create({
-    productName: productName,
-    productDesc: productDesc,
-    productPrice: productPrice,
-    productSizes: productSizes
-  });
+  const account = await User.findOne({ where: { email: req.user.username } });
 
-  res.status(200).json("PRODUCT ADDED");
+  if(account.admin === true) {
+
+    const { productName, productDesc, productPrice, productSizes  } = req.body;
+    await Products.create({
+      productName: productName,
+      productDesc: productDesc,
+      productPrice: productPrice,
+      productSizes: productSizes
+    })
+    .then( () => {
+      res.status(200).json("PRODUCT ADDED");
+    })
+
+  }
+})
+
+// EDIT PRODUCT
+products.post('/edit/:id',authentificate, async function (req, res) {
+  const id = req.params.id;
+  const { productName, productDesc, productPrice, productSizes  } = req.body;
+  const account = await User.findOne({ where: { email: req.user.username } });
+
+  if(account.admin === true) {
+
+    Products.update( { productName: productName, productDesc: productDesc, productPrice: productPrice, productSizes: productSizes }, { where: { id: id } } )
+    .then(function(affectedRows) {
+      res.status(200).json("updated " + affectedRows);
+    })
+  }
 })
 
 // REMOVE PRODUCT BY ID

@@ -55,10 +55,24 @@ auth.get('/list', authentificate, async function (req, res) {
   res.status(200).json(await User.findAll(), null, 2);
 })
 
+auth.post('/edit/:id', authentificate, async function (req, res) {
+  const id = req.params.id;
+  const { name, lastname, email, password, admin  } = req.body;
+  const account = await User.findOne({ where: { email: req.user.username } });
+
+  if(account.admin === true) {
+
+    User.update( { firstName: name, lastName: lastname, email: email, password: password, admin: admin  }, { where: { id: id } } )
+    .then(function(affectedRows) {
+      res.status(200).json("updated " + affectedRows);
+    })
+  }
+})
+
 auth.get('/test', authentificate, async function (req, res) {
   const account = await User.findOne({ where: { email: req.user.username } });
   
-  res.status(200).json();
+  res.status(200).json(account);
 })
 
 module.exports = auth;

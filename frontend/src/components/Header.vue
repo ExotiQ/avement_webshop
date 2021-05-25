@@ -1,0 +1,52 @@
+<template>
+    <header>
+        <div :style="{'color': color}" id="container">
+            <a href="/"><img class="align-left" :src="require(`../assets/schriftlogo-${color}.svg`)" alt="logo"></a>
+            <a class="align-left"  href="/search" :style="{'color': color}">Suche</a>
+            <a class="align-left"  href="/Shop" :style="{'color': color}">Shop</a>
+            <a class="align-right"  href="/Warenkorb" :style="{'color': color}">Warenkorb</a>
+            <a class="align-right"  href="/Account" :style="{'color': color}">Account</a>
+            <a class="align-right" href="/about" :style="{'color': color}">Lookbook</a>
+        </div>
+    </header>
+</template>
+
+<script>
+    export default {
+        name:'Header',
+        props:{
+            color: {
+                type: String,
+                default: "black",
+            }
+        }
+    }
+</script>
+
+<style scoped lang="scss">
+    header{
+        position: fixed;
+        width: 100%;
+        height: auto;
+        //background-color: mediumslateblue;
+    }
+
+    #container{
+        display: inline-block;
+        //background-color: mediumvioletred;
+        padding: 67px 70px 20px 70px;
+        width: calc(100% - 140px);
+        font-size: 12px;
+    }
+
+    img{
+        height: 15px;
+    }
+
+    a{
+        margin: 0px 0px 0px 20px;
+        text-decoration: none;
+    }
+
+
+</style>

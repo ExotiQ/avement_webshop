@@ -10,8 +10,8 @@
     <div id="background"></div>
     <div id="center-block">
       <img id="center-logo" class="align-left" src="../assets/schriftlogo-white.svg" alt="logo">
-      <p style="margin-left: 100px;" class="align-left">SHOP</p>
-      <p style="margin-right: 100px;" class="align-right">LOOKBOOK</p>
+      <a href="/shop"><p style="margin-left: 100px;" class="align-left">SHOP</p></a>
+       <a href="/lookbook"><p style="margin-right: 100px;" class="align-right">LOOKBOOK</p></a>
     </div>
     <Footer />
   </div>

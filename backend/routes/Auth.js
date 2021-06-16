@@ -22,7 +22,7 @@ auth.get('/login', async function (req, res) {
     const account = await User.findOne({ where: { email: username } });
     if (account) {
       // Generate an access token
-      const accessToken = jwt.sign({ username: account.email }, SECRET);
+      const accessToken = jwt.sign({ id: account.id }, SECRET);
       res.json({
           accessToken
       });

@@ -62,7 +62,7 @@
       position: relative;
       //border: 1px solid black;
       border-top: none;
-      color: black;
+      color: white;
       font-size: 14px;
      
       cursor: pointer;

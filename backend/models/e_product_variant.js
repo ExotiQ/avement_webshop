@@ -19,8 +19,7 @@ e_product_variant.init({
     },
     size:       Sequelize.STRING(10),
     color:      Sequelize.STRING(20),
-    images:     Sequelize.ARRAY(Sequelize.INTEGER),
     quantity:   Sequelize.INTEGER
-}, { sequelize, modelName: "e_product_variant"});
+}, { sequelize, modelName: "e_product_variant" });
 
 module.exports = e_product_variant;

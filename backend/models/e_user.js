@@ -30,7 +30,11 @@ e_user.init({
             isEmail: true
         }
     },
-    isAdmin:    Sequelize.BOOLEAN,
+    isAdmin: {
+        type:           Sequelize.BOOLEAN,
+        allowNull:      false,
+        defaultValue:   false
+    },
     password: {
         type:       Sequelize.STRING(30),
         allowNull:  false

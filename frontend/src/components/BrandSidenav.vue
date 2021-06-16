@@ -1,6 +1,6 @@
 <template>
     <div id="sidebar">
-        <a  href="/"><img class="logo" :src="require(`../assets/schriftlogo-black.svg`)" alt="logo"></a>
+        <a  href="/"><img class="logo" :src="require(`../assets/schriftlogo-white.svg`)" alt="logo"></a>
         <ul id="navigation">
             <li v-for="(item, index) in navigation" :key="'item'+index">
                 <i v-if="item.subnav" class="far" 
@@ -34,18 +34,18 @@ import Dropdown from './Dropdown.vue'
 
 <style lang="scss" scoped>
     #sidebar {
-        text-transform: uppercase;
+        //text-transform: uppercase;
         display: inline-block;
         text-align: left;
-        width: 200px;
+        width: 160px;
         position: fixed;
-        left: 45px;
+        left: 40px;
         top: 50%;
         transform: translate(0%, -50%);
     }
 
     .logo {
-        width: 150px;
+        height: 22px;
     }
 
     #navigation {
@@ -55,7 +55,7 @@ import Dropdown from './Dropdown.vue'
 
         li {
             position: relative;
-            color: black;
+            color: white;
             cursor: pointer;
 
             .title {

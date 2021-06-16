@@ -57,12 +57,12 @@ auth.get('/list', authentificate, async function (req, res) {
 
 auth.post('/edit/:id', authentificate, async function (req, res) {
   const id = req.params.id;
-  const { name, lastname, email, password, admin  } = req.body;
+  const { name, lastname, email, password, isAdmin  } = req.body;
   const account = await User.findOne({ where: { email: req.user.username } });
 
-  if(account.admin === true) {
+  if(account.isAdmin === true) {
 
-    User.update( { firstName: name, lastName: lastname, email: email, password: password, admin: admin  }, { where: { id: id } } )
+    User.update( { firstName: name, lastName: lastname, email: email, password: password, isAdmin: admin  }, { where: { id: id } } )
     .then(function(affectedRows) {
       res.status(200).json("updated " + affectedRows);
     })

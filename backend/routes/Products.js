@@ -1,8 +1,8 @@
 const express = require("express");
 const products = express.Router();
 const db = require('../config/database');
-const Products = require("../models/products");
-const User = require('../models/user');
+const Products = require("../models/e_product");
+const User = require('../models/e_user');
 
 const authentificate = require('../middleware/authentification.js')
 

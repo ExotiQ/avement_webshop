@@ -1,9 +1,14 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-class r_order extends Model {};
+class e_order extends Model {};
 
-r_order.init({
+e_order.init({
+    o_id: {
+        type:           Sequelize.INTEGER,
+        primaryKey:     true,
+        autoIncrement:  true
+    },
     u_id: {
         type:       Sequelize.UUID,
         primaryKey: true,
@@ -21,13 +26,12 @@ r_order.init({
         }
     },
     date: {
-        type:       Sequelize.DATE,
-        primaryKey: true,
-        defaultValue: Sequelize.NOW
+        type:           Sequelize.DATE,
+        defaultValue:   Sequelize.NOW
     },
     fullfilled: Sequelize.BOOLEAN,
     returned:   Sequelize.BOOLEAN,
     canceled:   Sequelize.BOOLEAN
-}, { sequelize, modelName: "r_order"});
+}, { sequelize, modelName: "e_order"});
 
-module.exports = r_order;
+module.exports = e_order;

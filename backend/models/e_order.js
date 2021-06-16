@@ -11,7 +11,6 @@ e_order.init({
     },
     u_id: {
         type:       Sequelize.UUID,
-        primaryKey: true,
         references: {
             model:  'e_user',
             key:    'id'

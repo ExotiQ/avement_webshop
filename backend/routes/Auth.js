@@ -1,7 +1,7 @@
 const express = require("express");
 const auth = express.Router();
 const db = require('../config/database');
-const User = require('../models/user')
+const User = require('../models/e_user')
 
 auth.use(express.json());
 
@@ -27,19 +27,16 @@ auth.post('/register', async function (req, res) {
       const email = await User.findOne({ where: { email: req.body.email } });
     if (email === null) {
       await User.create({
-        firstName: req.body.name,
-        lastName: req.body.lastname,
-        email: req.body.email
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password
         });
         res.status(200).json("registered");
     } else {
       res.status(409).json("already registered");
     }
     }
-})
-
-auth.get('/list', async function (req, res) {
-  res.status(200).json(await User.findAll(), null, 2);
 })
 
 module.exports = auth;

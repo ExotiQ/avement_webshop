@@ -15,6 +15,9 @@ async function main() {
   const Auth = require("./routes/Auth");
   app.use("/api/auth", Auth);
 
+  const Order = require("./routes/Order");
+  app.use("/api/order", Auth);
+
   const port = PORT || 4000;
 
   app.listen(port, function () {

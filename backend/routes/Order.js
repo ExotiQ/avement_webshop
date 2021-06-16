@@ -19,7 +19,7 @@ async function main() {
 // SHOW ALL USER ORDERS
 auth.post('/all', authentificate, async function (req, res) {
     const { name } = req.body;
-    const orders = await User.findOne({ where: { u_id: req.user.id } });
+    const orders = await Order.findAll({ where: { u_id: req.user.id } });
 
     if(orders.length() > 0) res.status(200).json(orders);
     else res.status(200).json("no orders");
@@ -30,7 +30,7 @@ auth.post('/all', authentificate, async function (req, res) {
 auth.post('/:id', authentificate, async function (req, res) {
     const id = req.params.id;
     const { name } = req.body;
-    const order = await User.findOne({ where: { id: id  } });
+    const order = await Order.findOne({ where: { id: id  } });
 
     if(orders.length() > 0) res.status(200).json(order);
     else res.status(200).json("no orders");

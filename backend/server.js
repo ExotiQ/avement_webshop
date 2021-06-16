@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require('./config/database');
+const User = require('./models/e_user')
 
 async function main() {
   const { PORT } = process.env;

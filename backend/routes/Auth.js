@@ -1,12 +1,7 @@
 const express = require("express");
 const auth = express.Router();
 const db = require('../config/database');
-const User = require('../models/user');
-
-const jwt = require('jsonwebtoken');
-const authentificate = require('../middleware/authentification.js')
-
-const { SECRET } = process.env;
+const User = require('../models/e_user')
 
 auth.use(express.json());
 
@@ -38,10 +33,10 @@ auth.post('/register', async function (req, res) {
       const email = await User.findOne({ where: { email: req.body.email } });
     if (email === null) {
       await User.create({
-        firstName: req.body.name,
-        lastName: req.body.lastname,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         email: req.body.email,
-        password: req.body.password,
+        password: req.body.password
         });
         res.status(200).json("registered");
     } else {

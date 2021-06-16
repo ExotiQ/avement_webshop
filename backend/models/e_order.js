@@ -4,7 +4,7 @@ const sequelize = require('../config/database');
 class e_order extends Model {};
 
 e_order.init({
-    o_id: {
+    id: {
         type:           Sequelize.INTEGER,
         primaryKey:     true,
         autoIncrement:  true

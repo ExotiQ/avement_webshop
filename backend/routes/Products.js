@@ -31,8 +31,7 @@ products.post('/add',authentificate, async function (req, res) {
   const { productName, productDesc, productPrice, productSizes  } = req.body;
   const account = await User.findOne({ where: { email: req.user.username } });
 
-  if(account.admin === true) {
-
+  if(account.isAdmin === true) {
     const { productName, productDesc, productPrice, productSizes  } = req.body;
     await Products.create({
       productName: productName,
@@ -53,7 +52,7 @@ products.post('/edit/:id',authentificate, async function (req, res) {
   const { productName, productDesc, productPrice, productSizes  } = req.body;
   const account = await User.findOne({ where: { email: req.user.username } });
 
-  if(account.admin === true) {
+  if(account.isAdmin === true) {
 
     Products.update( { productName: productName, productDesc: productDesc, productPrice: productPrice, productSizes: productSizes }, { where: { id: id } } )
     .then(function(affectedRows) {

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require('./config/database');
-const User = require('./models/user')
+const User = require('./models/e_user')
 
 async function main() {
   const { PORT } = process.env;
@@ -21,8 +21,6 @@ async function main() {
   // lastName: "Schweigard",
   // email: "luis@schweigard.com"
   // });
-
-  console.log(JSON.stringify(await User.findAll(), null, 2))
 
   const Items = require("./routes/Items");
   app.use("/api/items", Items);

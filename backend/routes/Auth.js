@@ -3,6 +3,11 @@ const auth = express.Router();
 const db = require('../config/database');
 const User = require('../models/e_user')
 
+const jwt = require('jsonwebtoken');
+const authentificate = require('../middleware/authentification.js')
+
+const { SECRET } = process.env;
+
 auth.use(express.json());
 
 async function main() {

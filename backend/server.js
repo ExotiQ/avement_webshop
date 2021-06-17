@@ -16,7 +16,10 @@ async function main() {
   app.use("/api/auth", Auth);
 
   const Order = require("./routes/Order");
-  app.use("/api/order", Auth);
+  app.use("/api/order", Order);
+
+  const Admin = require("./routes/Admin");
+  app.use("/api/admin", Admin);
 
   const port = PORT || 4000;
 

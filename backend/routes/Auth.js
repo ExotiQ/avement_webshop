@@ -23,35 +23,34 @@ auth.get('/login', async function (req, res) {
   if(username !== "" && password !== "") {
     const account = await User.findOne({ where: { email: username } });
     if (account) {
-      // Generate an access token
-      const accessToken = jwt.sign({ id: account.id }, SECRET);
-      res.json({
-          accessToken
-      });
+      let validPassword = await bcrypt.compare(password, account.password);
+      if (validPassword) {
+          // Generate an access token
+          const accessToken = jwt.sign({ id: account.id }, SECRET);
+          res.status(200).json({accessToken});
+        } else {
+          res.status(200).json("Username or password incorrect");
+        }
+      };
   } else {
       res.send('Username or password incorrect');
-  }
   }
 })
 
 // REGISTER
 auth.post('/register', async function (req, res) {
     const { firstName, lastName, email, password, admin  } = req.body;
-    let hash;
     if(req !== null) {
       const exists = await User.findOne({ where: { email: email } });
       console.log(exists)
     if (exists === null) {
-      bcrypt.hash(password, 10, async function(err, hash) {
-        console.log(hash)
+        let hash = await bcrypt.hashSync( password, 10);
         await User.create({
           firstName: firstName,
           lastName: lastName,
           email: email,
           password: hash
         });
-      });
-
       res.status(200).json("registered");
     } else {
       res.status(409).json("already registered");

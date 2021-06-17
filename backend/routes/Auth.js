@@ -63,6 +63,7 @@ auth.get('/list', authentificate, async function (req, res) {
   res.status(200).json(await User.findAll(), null, 2);
 })
 
+// EDIT USER
 auth.post('/edit/:id', authentificate, async function (req, res) {
   const id = req.params.id;
   const { firstName, lastName, email, password, admin  } = req.body;

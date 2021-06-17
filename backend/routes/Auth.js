@@ -1,7 +1,9 @@
 const express = require("express");
+const bcrypt = require('bcrypt');
 const auth = express.Router();
 const db = require('../config/database');
 const User = require('../models/e_user')
+
 
 const jwt = require('jsonwebtoken');
 const authentificate = require('../middleware/authentification.js')
@@ -34,16 +36,23 @@ auth.get('/login', async function (req, res) {
 
 // REGISTER
 auth.post('/register', async function (req, res) {
+    const { firstName, lastName, email, password, admin  } = req.body;
+    let hash;
     if(req !== null) {
-      const email = await User.findOne({ where: { email: req.body.email } });
-    if (email === null) {
-      await User.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password
+      const exists = await User.findOne({ where: { email: email } });
+      console.log(exists)
+    if (exists === null) {
+      bcrypt.hash(password, 10, async function(err, hash) {
+        console.log(hash)
+        await User.create({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: hash
         });
-        res.status(200).json("registered");
+      });
+
+      res.status(200).json("registered");
     } else {
       res.status(409).json("already registered");
     }
@@ -57,12 +66,11 @@ auth.get('/list', authentificate, async function (req, res) {
 
 auth.post('/edit/:id', authentificate, async function (req, res) {
   const id = req.params.id;
-  const { name, lastname, email, password, isAdmin  } = req.body;
-  const account = await User.findOne({ where: { email: req.user.username } });
+  const { firstName, lastName, email, password, admin  } = req.body;
+  const account = await User.findOne({ where: { id: req.user.id } });
 
   if(account.isAdmin === true) {
-
-    User.update( { firstName: name, lastName: lastname, email: email, password: password, isAdmin: admin  }, { where: { id: id } } )
+    User.update( { firstName: firstName, lastName: lastName, email: email, password: password, isAdmin: admin  }, { where: { id: id } } )
     .then(function(affectedRows) {
       res.status(200).json("updated " + affectedRows);
     })

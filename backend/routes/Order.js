@@ -1,5 +1,5 @@
 const express = require("express");
-const auth = express.Router();
+const order = express.Router();
 const db = require('../config/database');
 const User = require('../models/e_user')
 const Order = require('../models/e_order')
@@ -9,7 +9,7 @@ const authentificate = require('../middleware/authentification.js')
 
 const { SECRET } = process.env;
 
-auth.use(express.json());
+order.use(express.json());
 
 async function main() {
   db.authenticate().then(() => console.log("Connected to database..."))
@@ -17,7 +17,7 @@ async function main() {
 }
 
 // SHOW ALL USER ORDERS
-auth.post('/all', authentificate, async function (req, res) {
+order.post('/all', authentificate, async function (req, res) {
     const { name } = req.body;
     const orders = await Order.findAll({ where: { u_id: req.user.id } });
 
@@ -27,7 +27,7 @@ auth.post('/all', authentificate, async function (req, res) {
 });
 
 // RETURN SPECIFIC ORDER
-auth.post('/:id', authentificate, async function (req, res) {
+order.post('/:id', authentificate, async function (req, res) {
     const id = req.params.id;
     const { name } = req.body;
     const order = await Order.findOne({ where: { id: id  } });
@@ -37,4 +37,4 @@ auth.post('/:id', authentificate, async function (req, res) {
 
 });
 
-module.exports = auth;
+module.exports = order;

@@ -23,7 +23,15 @@ module.exports = {
             key:    'id'
         }
     },
-    description:    Sequelize.TEXT
+    description:    Sequelize.TEXT,
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    }
     });
   },
   down: async (queryInterface, Sequelize) => {

@@ -20,7 +20,15 @@ module.exports = {
       },
       fullfilled: Sequelize.BOOLEAN,
       returned:   Sequelize.BOOLEAN,
-      canceled:   Sequelize.BOOLEAN
+      canceled:   Sequelize.BOOLEAN,
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {

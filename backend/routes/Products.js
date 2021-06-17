@@ -53,7 +53,6 @@ products.post('/edit/:id',authentificate, async function (req, res) {
   const account = await User.findOne({ where: { email: req.user.username } });
 
   if(account.isAdmin === true) {
-
     Products.update( { productName: productName, productDesc: productDesc, productPrice: productPrice, productSizes: productSizes }, { where: { id: id } } )
     .then(function(affectedRows) {
       res.status(200).json("updated " + affectedRows);

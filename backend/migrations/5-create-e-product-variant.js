@@ -17,7 +17,15 @@ module.exports = {
       },
       size:       Sequelize.STRING(10),
       color:      Sequelize.STRING(20),
-      quantity:   Sequelize.INTEGER
+      quantity:   Sequelize.INTEGER,
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {

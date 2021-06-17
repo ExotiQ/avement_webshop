@@ -29,10 +29,10 @@ products.get('/:id', async function (req, res) {
 // ADD PRODUCT
 products.post('/add',authentificate, async function (req, res) {
   const { productName, productDesc, productPrice, productSizes  } = req.body;
-  const account = await User.findOne({ where: { email: req.user.username } });
+  const account = await User.findOne({ where: { id: req.user.id } });
+  console.log(account)
 
   if(account.isAdmin === true) {
-    const { productName, productDesc, productPrice, productSizes  } = req.body;
     await Products.create({
       productName: productName,
       productDesc: productDesc,
@@ -42,7 +42,6 @@ products.post('/add',authentificate, async function (req, res) {
     .then( () => {
       res.status(200).json("PRODUCT ADDED");
     })
-
   }
 })
 
@@ -50,7 +49,7 @@ products.post('/add',authentificate, async function (req, res) {
 products.post('/edit/:id',authentificate, async function (req, res) {
   const id = req.params.id;
   const { productName, productDesc, productPrice, productSizes  } = req.body;
-  const account = await User.findOne({ where: { email: req.user.username } });
+  const account = await User.findOne({ where: { id: req.user.id } });
 
   if(account.isAdmin === true) {
     Products.update( { productName: productName, productDesc: productDesc, productPrice: productPrice, productSizes: productSizes }, { where: { id: id } } )
@@ -62,9 +61,18 @@ products.post('/edit/:id',authentificate, async function (req, res) {
 
 // REMOVE PRODUCT BY ID
 products.post('/remove/:id',authentificate, async function (req, res) {
+  const account = await User.findOne({ where: { id: req.user.id } });
   const id = req.params.id;
-  Products.destroy({ where: { id: id } })
-  res.status(200).json("PRODUCT REMOVED");
+  
+  if(account.isAdmin === true) {
+    Products.destroy({ where: { id: id } })
+    .then(function(affectedRows) {
+      res.status(200).json("PRODUCT REMOVED: " + affectedRows);
+    })
+  }
+
+  
+  
 })
 
 module.exports = products;

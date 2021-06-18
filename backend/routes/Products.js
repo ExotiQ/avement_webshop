@@ -76,6 +76,7 @@ products.post('/remove/:id',authentificate, async function (req, res) {
 
 products.get('/product_page/:name/:color', async function (req, res) {
   const { name, color } = req.params;
+
   const product_page = await Products.sequelize.query(
   `SELECT p.name AS name, p_v.color AS color, p.price AS price, array_agg(e_image.image) AS image, array_agg(p_v.size, p_v.quantity) AS stock FROM  e_product p JOIN e_product_variant p_v ON p.id = p_v.p_id JOIN r_product_image p_i ON p_v.id = p_i.p_id JOIN e_image im ON p_i.i_id = im.id WHERE p.name = ${name} AND p_v.color = ${color} GROUP BY p.name, p_v.color, p.price`,
   { type: QueryTypes.SELECT })

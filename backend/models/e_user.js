@@ -1,5 +1,6 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const bcrypt = require('bcrypt');
 
 class e_user extends Model {};
 
@@ -40,6 +41,30 @@ e_user.init({
       type:       Sequelize.STRING(30),
       allowNull:  false
   }
-}, { sequelize, modelName: 'e_user' });
+},{
+    sequelize, 
+    modelName: 'e_user' 
+});
+
+
+e_user.beforeCreate(async (user, options) => {
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+});
+
+e_user.beforeBulkCreate(async (user, options) => {
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+});
+
+e_user.beforeUpdate(async (user, options) => {
+const salt = await bcrypt.genSalt(10);
+user.password = await bcrypt.hash(user.password, salt);
+});
+
+e_user.prototype.validPassword = async function(password) {
+    return await bcrypt.compare(password, this.password);
+}
+
 
 module.exports = e_user;

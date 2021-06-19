@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./server.js",
     "dev": "nodemon ./server.js",
-    "recreate": "node_modules/.bin/sequelize db:drop && node_modules/.bin/sequelize db:create && node_modules/.bin/sequelize db:migrate"
+    "recreate": "sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",

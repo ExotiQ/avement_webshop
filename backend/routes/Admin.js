@@ -23,7 +23,7 @@ async function main() {
 admin.post('/product/add', authentificate, async function (req, res) {
   const { name,category,price,description } = req.body;
   const account = await User.findOne({ where: { id: req.user.id } });
-
+  
   if(account.isAdmin === true) {
       await Product.create({
         name: name,
@@ -35,6 +35,8 @@ admin.post('/product/add', authentificate, async function (req, res) {
       }).catch(function (err) {
         res.status(400).json(err);
       });
+  } else {
+    res.status(401).json("Not Authorized");
   }
 });
 
@@ -50,6 +52,8 @@ admin.post('/category/add', authentificate, async function (req, res) {
     .then( () => {
       res.status(200).json("CATEGORY ADDED");
     })
+  } else {
+    res.status(401).json("UNAUTORIZED");
   }
 });
 
@@ -68,7 +72,7 @@ admin.post('/product/variant/add', authentificate, async function (req, res) {
     .then( () => {
       res.status(200).json("VARIANT ADDED");
     })
-  }
+  } else res.status(401);
 });
 
 // ADD IMAGE

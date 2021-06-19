@@ -1,20 +1,24 @@
+const { v4: uuidv4 } = require('uuid');
 'use strict';
+
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('e_users', [{
-      firstName: 'Florian',
-      lastName: 'Gesell',
-      email: 'gesell@example.com',
-      password: 'afhjksdhaklfhlsdkahfkhhasdf',
+    return queryInterface.bulkInsert('enum_categories', [{
+      id: 1,
+      name: 'Tops',
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      firstName: 'Karl',
-      lastName: 'Diedrichsen',
-      email: 'karl@example.com',
-      password: 'afhjksdhaklfhlsdkahfkhhasdf',
+      id: 2,
+      name: 'Bottoms',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: 3,
+      name: 'clothing oder accessoires',
       createdAt: new Date(),
       updatedAt: new Date()
     }

@@ -4,7 +4,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./server.js",
-    "dev": "nodemon ./server.js"
+    "dev": "nodemon ./server.js",
+    "recreate": "node_modules/.bin/sequelize db:drop && node_modules/.bin/sequelize db:create && node_modules/.bin/sequelize db:migrate"
   },
   "keywords": [],
   "author": "",

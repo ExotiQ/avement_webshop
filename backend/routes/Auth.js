@@ -1,5 +1,4 @@
 const express = require("express");
-const bcrypt = require('bcrypt');
 const auth = express.Router();
 const db = require('../config/database');
 const User = require('../models/e_user')
@@ -23,8 +22,7 @@ auth.get('/login', async function (req, res) {
   if(username !== "" && password !== "") {
     const account = await User.findOne({ where: { email: username } });
     if (account) {
-      let validPassword = await bcrypt.compare(password, account.password);
-      if (validPassword) {
+      if (await account.validPassword(password)) {
           // Generate an access token
           const accessToken = jwt.sign({ id: account.id }, SECRET);
           res.status(200).json({accessToken});
@@ -44,12 +42,11 @@ auth.post('/register', async function (req, res) {
       const exists = await User.findOne({ where: { email: email } });
       console.log(exists)
     if (exists === null) {
-        let hash = await bcrypt.hashSync( password, 10);
         await User.create({
           firstName: firstName,
           lastName: lastName,
           email: email,
-          password: hash
+          password: password
         });
       res.status(200).json("registered");
     } else {

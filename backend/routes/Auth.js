@@ -69,12 +69,13 @@ auth.post('/edit/:id', authentificate, async function (req, res) {
   const { firstName, lastName, email, password, admin  } = req.body;
   const account = await User.findOne({ where: { id: req.user.id } });
 
+  console.log(id);
   if(account.isAdmin === true) {
     User.update( { firstName: firstName, lastName: lastName, email: email, password: password, isAdmin: admin  }, { where: { id: id } } )
     .then(function(affectedRows) {
       res.status(200).json("updated " + affectedRows);
     })
-  }
+  } else res.status(401).json("UNAUTHORIZED");
 })
 
 auth.get('/test', authentificate, async function (req, res) {

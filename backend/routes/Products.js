@@ -21,12 +21,14 @@ products.get('/list', async function (req, res) {
 })
 
 // GET PRODUCT BY ID
+/*
 products.get('/:id', async function (req, res) {
   const id = req.params.id;
   const product = await Products.findOne({ where: { id: id } });
   if(product !== null) res.status(200).json(product);
   else res.status(400).json("NO PRODUCT WITH ID");
 })
+*/
 
 // ADD PRODUCT
 products.post('/add',authentificate, async function (req, res) {
@@ -74,16 +76,31 @@ products.post('/remove/:id',authentificate, async function (req, res) {
   }
 })
 
+
 products.get('/product_page/:name/:color', async function (req, res) {
   const { name, color } = req.params;
-  const product_page = await db.query(
-  `SELECT p.name AS name, p_v.color AS color, p.price AS price, array_agg(e_image.image) AS image, array_agg(p_v.size, p_v.quantity) AS stock FROM  e_products p JOIN e_product_variants p_v ON p.id = p_v.p_id JOIN r_product_images p_i ON p_v.id = p_i.p_id JOIN e_images im ON p_i.i_id = im.id WHERE p.name = ${name} AND p_v.color = ${color} GROUP BY p.name, p_v.color, p.price`,
-  { type: QueryTypes.SELECT })
+  await db.query(
+  `SELECT p.name AS name, p_v.color AS color, p.price AS price, array_agg(im.image) AS image, json_agg(json_build_object('size', p_v.size, 'amount', p_v.quantity)) AS stock FROM  e_products p JOIN e_product_variants p_v ON p.id = p_v.p_id LEFT JOIN r_product_images p_i ON p_v.id = p_i.p_id LEFT JOIN e_images im ON p_i.i_id = im.id WHERE p.name = ${"'" + name + "'"} AND p_v.color = ${"'" + color + "'"} GROUP BY p.name, p_v.color, p.price;`,
+  { type: QueryTypes.SELECT }).then(function(result) {
+    console.log(result);
+    if(result !== null) res.status(200).json(result);
+    else res.status(400).json("NO SUCH PRODUCT PAGE");
+  }).catch(function (err) {
+    res.status(400).json(err);
+  });
+});
 
-  res.status(200).json(product_page);
 
-  if(product_page !== null) res.status(200).json(product_page);
-  else res.status(400).json("NO SUCH PRODUCT PAGE");
+products.get('/get_all_products', async function (req, res) {
+  await db.query(
+  `SELECT p.name AS name, p_v.color AS color, p.price AS price, array_agg(im.image) AS image, json_agg(json_build_object('size', p_v.size, 'amount', p_v.quantity)) AS stock FROM e_products p JOIN e_product_variants p_v ON p.id = p_v.p_id LEFT JOIN r_product_images p_i ON p_v.id = p_i.p_id LEFT JOIN e_images im ON p_i.i_id = im.id GROUP BY p.name, p_v.color, p.price;`,
+  { type: QueryTypes.SELECT }).then(function(result) {
+    console.log(result);
+    if(result !== null) res.status(200).json(result);
+    else res.status(400).json("NO PRODUCTS IN THE DATABASE");
+  }).catch(function (err) {
+    res.status(400).json(err);
+  });
 });
 
 module.exports = products;

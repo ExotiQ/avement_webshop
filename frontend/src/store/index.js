@@ -367,17 +367,17 @@ export default new Vuex.Store({
   slider: [
     {
       headline: "WIR SIND SKATER",
-      text: "Wir repräsentiert mit unserer Mode die Skater und Streetfashion Kultur. Dieser Aspekt und die Zielgruppe muss in allen Designs der Marke berücksichtigt wären.",
+      text: "Wir repräsentieren mit unserer Mode Skater und Streetfashion Kultur. Diese kulturellen Einflüsse ziehen sich durch unsere Designsprache.",
       img: "dropin.jpg",
     },
     {
       headline: "WIR SIND NACHHALTIG",
-      text: "avément produkte werden ausschließlich zu fairen bedinungen in der EU produziert. Unsere Angestellten und die Qualität der Produkte liegt dabei besonders im Fokus. Der Nachhaltigkeitsaspekt soll dem Kunden vermittelt werden.",
+      text: "Avément Produkte werden ausschließlich zu fairen Bedingungen in der EU produziert. Unsere Angestellten und die Qualität der Produkte liegt dabei besonders im Fokus. Diese Nachhaltigkeit spiegelt sich in unseren Designs wider.",
       img: "factory.jpg",
     },
     {
       headline: "WIR SIND INTERNATIONAL",
-      text: "Avement ist weltweit mit eigenen Stores vertreten. Wir sprechen gezielt einen Internationalen Kundenstamm an. Designs sollen Werte der Weltoffenheit und Tolleranz vermitteln.",
+      text: "Avément Stores sind in vielen Ländern weltweit vertreten. Unsere Produkte sind für Menschen jeder Herkunft. Weltoffenheit und Toleranz sind wichtige Bestandteile unserer Designs.",
       img: "earth.jpg",
     },
   ],

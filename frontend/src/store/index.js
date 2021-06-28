@@ -17,27 +17,42 @@ export default new Vuex.Store({
     navigation: [
     {
       title: "Logo",
+      href: "#logo",
       open: false,
       subnav: [
-        {title: "Aufbau",},
-        { title: "Varianten" },
-        { title: "Clearspace" },
-        { title: "Größe" },
-        { title: "Social Icons" },
-        { title: "Guidance" },
+        {title: "Aufbau",
+        href: "#aufbau"
+      },
+        { title: "Varianten",
+        href: "#varrianten"},
+        { title: "Clearspace", 
+        href: "#clearspace"},
+        { title: "Größe",
+        href: "#groesse"},
+        { title: "Social Icons" ,
+        href: "#socialicons"},
+        { title: "Guidance",
+        href: "#guidance"},
       ]
     },
     {
       title: "Typografie",
+      href: "#typo",
       open: false,
       subnav: [
-        { title: "Fonts" }, 
-        { title: "Usecases" }
+        { title: "Fonts",
+        href: "#fonts", }, 
+        { title: "Usecases", 
+        href: "#usecases"}
       ]
     },
-    { title: "Farben" },
-    { title: "Komposition" },
-    { title: "Layoutgenerator" },
+    { title: "Farben",
+    href: "#colors" },
+    { title: "Komposition",
+    href: "#komposition"
+  },
+    { title: "Layoutgenerator",
+    href: "#layoutgenerator" },
   ],
   products: [
       {
@@ -195,6 +210,12 @@ export default new Vuex.Store({
       img: "skate.gif",
     },
     {
+      headline: "Wer wir sind:",
+      textpos: "top",
+      textcolumns: 2,
+      slider: true,
+    },
+    {
       headline: "Branding guidelines",
       subheadline: "Was ist das und wie benutzt du sie?",
       text: "Comnimpe rchictate velique peribusandem venim di cusda quam, ius anditem ex est, aborest fuga. To con nemqui unda sit faccupt atiaerruptis dundicia siti incia doluptat facepelenem quaest lique conseri blant acera quibea nones eat omnis accus aut pro volum aut optatenis aut quaspitas re, intoribus aut adit labore, sam, sintis et plandam vendes ex Comnimpe rchictate velique peribusandem venim di cusda quam, ius anditem ex est, aborest fuga. To con nemqui unda sit faccupt atiaerruptis dundicia siti incia doluptat facepelenem quaest lique conseri blant acera quibea nones eat omnis accus aut pro volum aut optatenis aut quaspitas re, intoribus aut adit labore, sam, sintis et plandam vendes ex ",
@@ -228,14 +249,16 @@ export default new Vuex.Store({
       align: "center",
       textpos: "left",
       textcolumns: 1,
+      href: "aufbau",
     },
     {
       headline: "Varianten",
       text: "Comnimpe rchictate velique peribusandem venim di cusda quam, ius anditem ex est, aborest fuga. To con nemqu",
-      img: "Element 5.svg",
+      img: "varrianten.jpg",
       align: "top",
       textpos: "left",
       textcolumns: 1,
+      href: "varrianten",
     },
     {
       headline: "Clearspace",
@@ -244,6 +267,7 @@ export default new Vuex.Store({
       align: "top",
       textpos: "left",
       textcolumns: 1,
+      href: "clearspace",
     },
     {
       headline: "Grösse",
@@ -252,6 +276,7 @@ export default new Vuex.Store({
       align: "topr",
       textpos: "left",
       textcolumns: 1,
+      href: "groesse",
     },
     {
       headline: "Social icons",
@@ -260,15 +285,17 @@ export default new Vuex.Store({
       align: "top",
       textpos: "left",
       textcolumns: 1,
+      href: "socialicons",
     },
     {
       headline: "Guidance",
       text: "Comnimpe rchictate velique peribusandem venim di cusda quam, ius anditem ex est, aborest fuga. To con nemqu",
-      img: "Element 9.svg",
+      img: "guidelines.jpg",
       align: "top",
       textpos: "left",
       textcolumns: 1,
       dist: 6,
+      href: "guidance",
     },
     {
       bigheadline: "TYPOGRAFIE",
@@ -281,6 +308,7 @@ export default new Vuex.Store({
     },
     {
       fontlist: true,
+      href: "fonts",
     },
     {
       headline: "Usecases",
@@ -289,6 +317,7 @@ export default new Vuex.Store({
       textpos: "left",
       textcolumns: 1,
       dist: 1,
+      href: "usecases",
     },
     {
       usecases: true,
@@ -300,6 +329,7 @@ export default new Vuex.Store({
       textpos: "left",
       textcolumns: 1,
       dist: 1,
+      href: "colors",
     },
     {
       colors: true,
@@ -310,6 +340,7 @@ export default new Vuex.Store({
       img: "plakat7.png",
       textpos: "top",
       textcolumns: 1,
+      href: "komposition",
     },
     {
       layouts: true,
@@ -332,6 +363,23 @@ export default new Vuex.Store({
       name: "Antarctican Mono",
     },
     
+  ],
+  slider: [
+    {
+      headline: "WIR SIND SKATER",
+      text: "Wir repräsentiert mit unserer Mode die Skater und Streetfashion Kultur. Dieser Aspekt und die Zielgruppe muss in allen Designs der Marke berücksichtigt wären.",
+      img: "dropin.jpg",
+    },
+    {
+      headline: "WIR SIND NACHHALTIG",
+      text: "avément produkte werden ausschließlich zu fairen bedinungen in der EU produziert. Unsere Angestellten und die Qualität der Produkte liegt dabei besonders im Fokus. Der Nachhaltigkeitsaspekt soll dem Kunden vermittelt werden.",
+      img: "factory.jpg",
+    },
+    {
+      headline: "WIR SIND INTERNATIONAL",
+      text: "Avement ist weltweit mit eigenen Stores vertreten. Wir sprechen gezielt einen Internationalen Kundenstamm an. Designs sollen Werte der Weltoffenheit und Tolleranz vermitteln.",
+      img: "earth.jpg",
+    },
   ],
   colors: [
     {
@@ -379,6 +427,30 @@ export default new Vuex.Store({
           cmyk: "0 34 0 61",
           recomendet: [
             "#e7d04f",
+          ]
+        },
+        {
+          rgb: "rgb(68, 107, 156)",
+          hex: "#446B9C",
+          cmyk: "0 34 0 61",
+          recomendet: [
+            "#E7D04F",
+          ]
+        },
+        {
+          rgb: "rgb(232, 114, 194)",
+          hex: "#E872C2",
+          cmyk: "0 34 0 61",
+          recomendet: [
+            "#E7D04F",
+          ]
+        },
+        {
+          rgb: "rgb(102, 232, 163)",
+          hex: "#66E8A3",
+          cmyk: "0 34 0 61",
+          recomendet: [
+            "#E7D04F",
           ]
         },
       ]
@@ -713,6 +785,9 @@ getters: {
   },
   primeColors: state => {
     return state.colors[0].primary;
+  },
+  slider: state => {
+    return state.slider;
   },
   secondColors: state => {
     return state.colors[0].second;

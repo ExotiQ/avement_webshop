@@ -53,10 +53,10 @@
              <input type="checkbox" v-model="showSubheadline">
 
             <div :style="!subheadlineOpen ? 'height: 0px' : 'height: 200px'" class="subheadlineStetting setting">
-                <input type="text" v-model="subheadline" placeholder="Teste deinen eigenen Fließtext">
+                <input type="text" v-model="subheadline" placeholder="Subheadline">
                 <select v-model="sfstyle">
-                    <option v-bind:value="'normal'">normal</option>
-                    <option v-bind:value="'italic'">italic</option>
+                    <option v-bind:value="'normal'">Normal</option>
+                    <option v-bind:value="'italic'">Italic</option>
                 </select>
                 <select v-model="sfwidth">
                     <option v-bind:value="300">Thin</option>
@@ -123,7 +123,7 @@ export default {
             if (this.subheadline != ''){
                 return this.subheadline
             }
-            return "Subeadline";
+            return "Subheadline";
         },
         setFltext(){
             if (this.fltext != ''){

@@ -6,7 +6,7 @@
                 <Color v-for="(item, index) in primeColors" :key="'item'+index" :color="item" @update="displayColor" />
             </div>
             <div class="second">
-                <p>Sekondärfarben</p>
+                <p>Sekundärfarben</p>
                 <Color v-for="(item, index) in secondColors" :key="'item'+index" :color="item" @update="displayColor" />
             </div>
         </div>

@@ -3,13 +3,15 @@
         <a  href="/"><img class="logo" :src="require(`../assets/schriftlogo-white.svg`)" alt="logo"></a>
         <ul id="navigation">
             <li v-for="(item, index) in navigation" :key="'item'+index">
-                <i v-if="item.subnav" class="far" 
-                :class="{'fas fa-angle-right':!item.open,
-                'fas fa-angle-down':item.open}"></i>
-                <div class="title" @click="item.open = !item.open">
-                    {{ item.title }}
-                </div>
-                <Dropdown v-if="item.subnav" :list="item"/>
+                <a :href="item.href">
+                    <i v-if="item.subnav" class="far" 
+                    :class="{'fas fa-angle-right':!item.open,
+                    'fas fa-angle-down':item.open}"></i>
+                    <div class="title" @click="item.open = !item.open">
+                        {{ item.title }}
+                    </div>
+                    <Dropdown v-if="item.subnav" :list="item"/>
+                </a>
             </li>
         </ul>
     </div>
@@ -38,7 +40,7 @@ import Dropdown from './Dropdown.vue'
         display: inline-block;
         text-align: left;
         width: 160px;
-        position: fixed;
+        position: absolute;
         left: 40px;
         top: 50%;
         transform: translate(0%, -50%);
@@ -46,6 +48,11 @@ import Dropdown from './Dropdown.vue'
 
     .logo {
         height: 22px;
+    }
+
+    a{
+        color: white;
+        text-decoration: none;
     }
 
     #navigation {

@@ -8,6 +8,7 @@
       <li class="sub-item" 
           v-for="(item, index) in list.subnav" 
           :key="'item'+index">
+          <a :href="item.href">
         <i v-if="item.subnav" class="far"
           :class="{'fa-plus-square':!item.open,
                     'fa-minus-square':item.open}"></i>
@@ -15,6 +16,7 @@
           {{ item.title }}
         </div>
         <Dropdown class="subnav" v-if="item.subnav" :list="item" />
+        </a>
       </li>
     </ul>
   </transition>  
@@ -51,6 +53,11 @@
 </script>
 
 <style lang="scss" scoped>
+
+  a{
+    color: white;
+    text-decoration: none;
+  }
   .sub-items {
     list-style: none;
     margin-left: 15px;

@@ -1,8 +1,9 @@
 <template>
-    <div :class="[fullsize ? 'fullsize' : 'page']" :style="{'align-items': align, 'margin-bottom': dist*45+'px'}">
+    <div :class="[fullsize ? 'fullsize' : 'page']" :id="href" :style="{'align-items': align, 'margin-bottom': dist*45+'px'}">
         <div v-if="special" class="special">
             <FontUsecases v-if="usecases" />
             <Colors v-if="colors" />
+            <Slideshow v-if="slider" />
             <Layouts v-if="layouts" />
             <div  v-if="fontlist" class="fontcontainer">
                 <table class="container" :style="{ backgroundColor: colorswitch}">
@@ -38,6 +39,7 @@ import FontList from '../components/FontList'
 import FontUsecases from '../components/FontUsecases'
 import Colors from '../components/Colors'
 import Layouts from '../components/Layouts'
+import Slideshow from '../components/Slideshow'
 
 export default {
     name: 'page',
@@ -46,6 +48,7 @@ export default {
         FontUsecases,
         Colors,
         Layouts,
+        Slideshow,
     },
     data() {
             return {
@@ -137,7 +140,7 @@ export default {
             }
         },
         special (){
-            if(this.fontlist || this.usecases || this.colors || this.layouts){
+            if(this.fontlist || this.usecases || this.colors || this.layouts || this.slider ){
                 return true;
             }
             else{
@@ -196,7 +199,15 @@ export default {
         layouts:{
             type: Boolean,
             default: false,
-        }
+        },
+        slider:{
+            type: Boolean,
+            default: false,
+        },
+         href:{
+            type: String,
+            default: "",
+        },
     },
     methods:{   
     },
@@ -342,15 +353,10 @@ export default {
         margin-top: 1px;
     }
 
-
-    /* CAUTION: Internet Explorer hackery ahead */
-
-
     select::-ms-expand {
-        display: none; /* Remove default arrow in Internet Explorer 10 and 11 */
+        display: none; 
     }
 
-    /* Target Internet Explorer 9 to undo the custom arrow */
     @media screen and (min-width:0\0) {
         select {
             background: none\9;

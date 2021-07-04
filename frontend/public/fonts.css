@@ -1,0 +1,24 @@
+@font-face {
+  font-family:  'Filson Pro Heavy';
+  src:          url('fonts/Filson/filson_pro_black.ttf')  format('ttf');
+}
+@font-face {
+  font-family:  'Filson Pro Bold';
+  src:          url('fonts/Filson/filson_pro_bold.ttf')  format('ttf');
+}
+@font-face {
+  font-family:  'Antarctican Mono Bold';
+  src:          url('fonts/Antarctican/antarctican_mono_black.ttf')  format('ttf');
+}
+@font-face {
+  font-family:  'Antarctican Mono Semibold';
+  src:          url('fonts/Antarctican/antarctican_mono_bold.ttf')  format('ttf');
+}
+@font-face {
+  font-family:  'Antarctican Mono Medium';
+  src:          url('fonts/Antarctican/antarctican_mono_regular.ttf')  format('ttf');
+}
+@font-face {
+  font-family:  'Antarctican Mono Book';
+  src:          url('fonts/Antarctican/antarctican_mono_thin.ttf')  format('ttf');
+}

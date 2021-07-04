@@ -25,7 +25,7 @@ r_ordered_product.init({
     },
     quantity: {
         type:           Sequelize.INTEGER,
-        allowNull:      false
+        defaultValue:   1
     }
 }, { sequelize, modelName: "r_ordered_product"});
 

@@ -48,10 +48,11 @@ admin.post('/category/add', authentificate, async function (req, res) {
   if(account.isAdmin === true) {
     await Category.create({
       name: name
-    }) 
-    .then( () => {
+    }).then( () => {
       res.status(200).json("CATEGORY ADDED");
-    })
+    }).catch(function (err) {
+      res.status(400).json(err);
+    });
   } else {
     res.status(401).json("UNAUTORIZED");
   }
@@ -71,7 +72,9 @@ admin.post('/product/variant/add', authentificate, async function (req, res) {
     }) 
     .then( () => {
       res.status(200).json("VARIANT ADDED");
-    })
+    }).catch(function (err) {
+      res.status(400).json(err);
+    });
   } else res.status(401);
 });
 

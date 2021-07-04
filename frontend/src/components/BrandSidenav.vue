@@ -1,15 +1,17 @@
 <template>
     <div id="sidebar">
-        <a  href="/"><img class="logo" :src="require(`../assets/schriftlogo-black.svg`)" alt="logo"></a>
+        <a  href="/"><img class="logo" :src="require(`../assets/schriftlogo-white.svg`)" alt="logo"></a>
         <ul id="navigation">
             <li v-for="(item, index) in navigation" :key="'item'+index">
-                <i v-if="item.subnav" class="far" 
-                :class="{'fas fa-angle-right':!item.open,
-                'fas fa-angle-down':item.open}"></i>
-                <div class="title" @click="item.open = !item.open">
-                    {{ item.title }}
-                </div>
-                <Dropdown v-if="item.subnav" :list="item"/>
+                <a :href="item.href">
+                    <i v-if="item.subnav" class="far" 
+                    :class="{'fas fa-angle-right':!item.open,
+                    'fas fa-angle-down':item.open}"></i>
+                    <div class="title" @click="item.open = !item.open">
+                        {{ item.title }}
+                    </div>
+                    <Dropdown v-if="item.subnav" :list="item"/>
+                </a>
             </li>
         </ul>
     </div>
@@ -34,18 +36,36 @@ import Dropdown from './Dropdown.vue'
 
 <style lang="scss" scoped>
     #sidebar {
+<<<<<<< HEAD
         text-transform: uppercase;
         display: inline-block;
         text-align: left;
         width: 200px;
         position: fixed;
         left: 45px;
+=======
+        //text-transform: uppercase;
+        display: inline-block;
+        text-align: left;
+        width: 160px;
+        position: absolute;
+        left: 40px;
+>>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
         top: 50%;
         transform: translate(0%, -50%);
     }
 
     .logo {
+<<<<<<< HEAD
         width: 150px;
+=======
+        height: 22px;
+    }
+
+    a{
+        color: white;
+        text-decoration: none;
+>>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
     }
 
     #navigation {
@@ -55,7 +75,11 @@ import Dropdown from './Dropdown.vue'
 
         li {
             position: relative;
+<<<<<<< HEAD
             color: black;
+=======
+            color: white;
+>>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
             cursor: pointer;
 
             .title {

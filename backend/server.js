@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const db = require('./config/database');
+const User = require('./models/e_user')
 
 async function main() {
   const { PORT } = process.env;
@@ -13,6 +14,12 @@ async function main() {
 
   const Auth = require("./routes/Auth");
   app.use("/api/auth", Auth);
+
+  const Order = require("./routes/Order");
+  app.use("/api/order", Order);
+
+  const Admin = require("./routes/Admin");
+  app.use("/api/admin", Admin);
 
   const port = PORT || 4000;
 

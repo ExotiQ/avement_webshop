@@ -43,13 +43,6 @@
 
 <script>
 
-<<<<<<< HEAD
-export default {
-    name: 'page',
-    components: {
-    },
-    computed:{
-=======
 import FontList from '../components/FontList'
 import FontUsecases from '../components/FontUsecases'
 import Colors from '../components/Colors'
@@ -79,7 +72,6 @@ export default {
         headlinetext(){
             return "headline";
         },
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
         textposit (){
             console.log(this.textcolumns);
             if(this.textcolumns == 1){
@@ -140,11 +132,7 @@ export default {
             else{
                 if (this.textpos === "left") {
                     return{
-<<<<<<< HEAD
-                        "grid-column": "3 / 5" 
-=======
                         "grid-column": "3 / 6",
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
                     }
                 }
                 else if (this.textpos === "right"){
@@ -158,8 +146,6 @@ export default {
                     }
                 }
             }
-<<<<<<< HEAD
-=======
         },
         special (){
             if(this.fontlist || this.usecases || this.colors || this.layouts || this.slider ){
@@ -168,7 +154,6 @@ export default {
             else{
                 return false;
             }
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
         }
     },
     props:{
@@ -202,9 +187,6 @@ export default {
         dist:{
             type: Number,
             default: 4,
-<<<<<<< HEAD
-        }
-=======
         },
         fullsize:{
             type: Boolean,
@@ -234,7 +216,6 @@ export default {
             type: String,
             default: "",
         },
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
     },
     methods:{   
     },
@@ -249,14 +230,6 @@ export default {
     p{
         margin: 0px;
     }
-<<<<<<< HEAD
-    .page{
-        width: 100%;
-        display: grid;
-        grid-column-gap: 45px;
-        grid-row-gap: 0px;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-=======
 
     .special{
         width: 100%;
@@ -289,7 +262,6 @@ export default {
         grid-column-gap: 45px;
         grid-row-gap: 0px;
         grid-template-columns: 1fr 1fr 1fr 1fr 0px;
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
         height: auto;
     }
 
@@ -314,21 +286,14 @@ export default {
     }
 
     .subheadline{
-<<<<<<< HEAD
-        font-size:1.6em;
-=======
         font-size:1.5em;
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
         font-weight: 500;
         margin-bottom: 26px;
     }
 
     .text{
         font-size: 1em;
-<<<<<<< HEAD
-=======
         line-height: 1.8em;
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
         font-weight: 400;
         column-count: 2;
         column-width: calc((100vw - 90px - 245px - 3* 45px)/4);
@@ -338,8 +303,6 @@ export default {
     img{
         width: 100%;
     }
-<<<<<<< HEAD
-=======
 
     table{
         width: 100%;
@@ -409,5 +372,4 @@ export default {
         }
     }
     
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
 </style>

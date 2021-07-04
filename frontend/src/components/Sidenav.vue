@@ -21,7 +21,7 @@
         display: inline-block;
         text-align: left;
         width: 70px;
-        position: absolute;
+        position: fixed;
         left: 70px;
         top: 50%;
         transform: translate(0%, -50%);

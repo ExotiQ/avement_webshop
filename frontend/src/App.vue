@@ -18,6 +18,15 @@ export default {
 </script>
 
 <style lang="scss">
+ @import url("https://use.fontawesome.com/releases/v5.11.0/css/all.css");
+
+input, select, textarea{
+  font-family: 'Montserrat', serif;
+  outline: none;
+  font-weight: 400;
+}
+
+
 
 .align-left{
         float: left;
@@ -69,6 +78,10 @@ body{
 
 #center-logo{
   height: 96px;
+}
+
+select{
+  font-family: 'Montserrat';
 }
 
 #nav {

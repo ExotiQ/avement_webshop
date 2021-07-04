@@ -70,119 +70,6 @@ import Colors from "../components/Colors";
 import Layouts from "../components/Layouts";
 import Slideshow from "../components/Slideshow";
 
-<<<<<<< HEAD
-import FontList from '../components/FontList'
-import FontUsecases from '../components/FontUsecases'
-import Colors from '../components/Colors'
-import Layouts from '../components/Layouts'
-import Slideshow from '../components/Slideshow'
-
-export default {
-    name: 'page',
-    components: {
-        FontList,
-        FontUsecases,
-        Colors,
-        Layouts,
-        Slideshow,
-    },
-    data() {
-            return {
-                message: '',
-                fltext: '',
-                fontstyle: '0',
-            }
-    },
-    computed:{
-        fontl(){
-            return this.$store.getters.fontlist;
-        },
-        headlinetext(){
-            return "headline";
-        },
-        textposit (){
-            console.log(this.textcolumns);
-            if(this.textcolumns == 1){
-                if (this.textpos === "left") {
-                    return{
-                        "grid-column": "1 / 2", 
-                    }
-                }
-            else if(this.textpos === "top"){
-                return{
-                        "grid-column": "1 / 2", 
-                        "margin-bottom": "45px" 
-                    }
-            }
-                else{
-                        return{
-                        "grid-column": "4 / 5"
-                    }
-                }
-            }
-            else{
-                if (this.textpos === "left") {
-                    return{
-                        "grid-column": "1 / 3" 
-                    }
-                }
-                else if(this.textpos === "top"){
-                     return{
-                        "grid-column": "1 / 3", 
-                        "margin-bottom": "45px" 
-                    }
-                }
-                else{
-                        return{
-                        "grid-column": "3 / 5"
-                    }
-                }
-            }
-        },
-        imgposit (){
-            if(this.textcolumns == 1){
-                if (this.textpos === "left") {
-                    return{
-                        "grid-column": "2 / 5" 
-                    }
-                }
-                else if (this.textpos === "right"){
-                        return{
-                        "grid-column": "1 / 4"
-                    }
-                }
-                else{
-                     return{
-                        "grid-column": "1 / 5"
-                    }
-                }
-            }
-            else{
-                if (this.textpos === "left") {
-                    return{
-                        "grid-column": "3 / 6",
-                    }
-                }
-                else if (this.textpos === "right"){
-                        return{
-                        "grid-column": "1/ 3"
-                    }
-                }
-                else{
-                     return{
-                        "grid-column": "1 / 5"
-                    }
-                }
-            }
-        },
-        special (){
-            if(this.fontlist || this.usecases || this.colors || this.layouts || this.slider ){
-                return true;
-            }
-            else{
-                return false;
-            }
-=======
 export default {
   name: "page",
   components: {
@@ -237,72 +124,9 @@ export default {
           return {
             "grid-column": "3 / 5",
           };
->>>>>>> fb61418b45b2bb02d2bb7227ebf7569b05deb16d
         }
       }
     },
-<<<<<<< HEAD
-    props:{
-        headline: {
-            type: String,
-        },
-        subheadline: {
-            type: String,
-        },
-        bigheadline: {
-            type: String,
-        },
-        text: {
-            type: String,
-        },
-        img: {
-            type: String,
-        },
-        align:{
-            type: String,
-            default: "center",
-        },
-        textpos:{
-            type: String,
-            default: "left",
-        },
-        textcolumns:{
-            type: Number,
-            default: 1,
-        },
-        dist:{
-            type: Number,
-            default: 4,
-        },
-        fullsize:{
-            type: Boolean,
-            default: false,
-        },
-        fontlist:{
-            type: Boolean,
-            default: false,
-        },
-        usecases:{
-            type: Boolean,
-            default: false,
-        },
-        colors:{
-            type: Boolean,
-            default: false,
-        },
-        layouts:{
-            type: Boolean,
-            default: false,
-        },
-        slider:{
-            type: Boolean,
-            default: false,
-        },
-         href:{
-            type: String,
-            default: "",
-        },
-=======
     imgposit() {
       if (this.textcolumns == 1) {
         if (this.textpos === "left") {
@@ -333,7 +157,6 @@ export default {
           };
         }
       }
->>>>>>> fb61418b45b2bb02d2bb7227ebf7569b05deb16d
     },
     special() {
       if (
@@ -419,24 +242,11 @@ p {
   margin: 0px;
 }
 
-<<<<<<< HEAD
-    
-    p{
-        margin: 0px;
-    }
-
-    .special{
-        width: 100%;
-        display: inline-block;
-        grid-column: 1 / 5;
-    }
-=======
 .special {
   width: 100%;
   display: inline-block;
   grid-column: 1 / 5;
 }
->>>>>>> fb61418b45b2bb02d2bb7227ebf7569b05deb16d
 
 .fontcontainer {
   width: 100%;
@@ -456,17 +266,6 @@ p {
   transform: translate(0, -50%);
 }
 
-<<<<<<< HEAD
-    .page{
-        width: calc(100% - 45px);
-        margin-left: 45px;
-        display: grid;
-        grid-column-gap: 45px;
-        grid-row-gap: 0px;
-        grid-template-columns: 1fr 1fr 1fr 1fr 0px;
-        height: auto;
-    }
-=======
 .page {
   width: calc(100% - 45px);
   margin-left: 45px;
@@ -476,7 +275,6 @@ p {
   grid-template-columns: 1fr 1fr 1fr 1fr 0px;
   height: auto;
 }
->>>>>>> fb61418b45b2bb02d2bb7227ebf7569b05deb16d
 
 .container {
   display: inline-block;
@@ -498,26 +296,6 @@ p {
   word-break: keep-all;
 }
 
-<<<<<<< HEAD
-    .subheadline{
-        font-size:1.5em;
-        font-weight: 500;
-        margin-bottom: 26px;
-    }
-
-    .text{
-        font-size: 1em;
-        line-height: 1.8em;
-        font-weight: 400;
-        column-count: 2;
-        column-width: calc((100vw - 90px - 245px - 3* 45px)/4);
-        column-gap: 45px;
-    }
-
-    img{
-        width: 100%;
-    }
-=======
 .subheadline {
   font-size: 1.5em;
   font-weight: 500;
@@ -536,7 +314,6 @@ p {
 img {
   width: 100%;
 }
->>>>>>> fb61418b45b2bb02d2bb7227ebf7569b05deb16d
 
 table {
   width: 100%;
@@ -600,16 +377,6 @@ select::-ms-expand {
   display: none;
 }
 
-<<<<<<< HEAD
-    @media screen and (min-width:0\0) {
-        select {
-            background: none\9;
-            padding: 5px\9;
-        }
-    }
-    
-</style>
-=======
 @media screen and (min-width: 0\0) {
   select {
     background: none\9;
@@ -617,4 +384,3 @@ select::-ms-expand {
   }
 }
 </style>
->>>>>>> fb61418b45b2bb02d2bb7227ebf7569b05deb16d

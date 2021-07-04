@@ -23,20 +23,17 @@ const routes = [
   {
     path: "/shop",
     name: "Shop",
-    component: () =>
-      import("../views/Shop.vue"),
+    component: () => import("../views/Shop.vue"),
   },
   {
     path: "/brand",
     name: "Brand",
-    component: () =>
-      import("../views/Brand.vue"),
+    component: () => import("../views/Brand.vue"),
   },
   {
     path: "/shop/products/:product_id",
     name: "Products",
-    component: () =>
-      import("../views/Products.vue"),
+    component: () => import("../views/Products.vue"),
   },
   {
     path: "/cart",

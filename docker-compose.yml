@@ -43,11 +43,7 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
       <<: *postgres-credentials
     ports:
-<<<<<<< HEAD
-      - 5433:5433
-=======
       - 5432:5432
->>>>>>> backend
     volumes:
       - avement_webshop_postgres_volume:/var/lib/postgresql/data
 

@@ -1,37 +1,45 @@
 <template>
-    <div id="sidebar">
-        <a  href="/"><img class="logo" :src="require(`../assets/schriftlogo-white.svg`)" alt="logo"></a>
-        <ul id="navigation">
-            <li v-for="(item, index) in navigation" :key="'item'+index">
-                <a :href="item.href">
-                    <i v-if="item.subnav" class="far" 
-                    :class="{'fas fa-angle-right':!item.open,
-                    'fas fa-angle-down':item.open}"></i>
-                    <div class="title" @click="item.open = !item.open">
-                        {{ item.title }}
-                    </div>
-                    <Dropdown v-if="item.subnav" :list="item"/>
-                </a>
-            </li>
-        </ul>
-    </div>
+  <div id="sidebar">
+    <a href="/"
+      ><img
+        class="logo"
+        :src="require(`../assets/schriftlogo-white.svg`)"
+        alt="logo"
+    /></a>
+    <ul id="navigation">
+      <li v-for="(item, index) in navigation" :key="'item' + index">
+        <a :href="item.href">
+          <i
+            v-if="item.subnav"
+            class="far"
+            :class="{
+              'fas fa-angle-right': !item.open,
+              'fas fa-angle-down': item.open,
+            }"
+          ></i>
+          <div class="title" @click="item.open = !item.open">
+            {{ item.title }}
+          </div>
+          <Dropdown v-if="item.subnav" :list="item" />
+        </a>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
+import Dropdown from "./Dropdown.vue";
 
-import Dropdown from './Dropdown.vue'
-
-    export default {
-        computed: {
-            navigation(){
-                return this.$store.getters.navigation;
-            }
-        },
-         components: {
-
-            Dropdown,
-        }, 
-    }
+export default {
+  computed: {
+    navigation() {
+      return this.$store.getters.navigation;
+    },
+  },
+  components: {
+    Dropdown,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

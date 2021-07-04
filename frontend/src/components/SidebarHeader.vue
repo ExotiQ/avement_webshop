@@ -1,17 +1,13 @@
 <template>
-    <div id="sidebar-header">
-        <div class="logo"></div>
-        <div class="name"></div>
-        <div></div>
-    </div>
+  <div id="sidebar-header">
+    <div class="logo"></div>
+    <div class="name"></div>
+    <div></div>
+  </div>
 </template>
 
 <script>
-export default {
-    
-}
+export default {};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

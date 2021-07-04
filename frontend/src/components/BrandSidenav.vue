@@ -44,36 +44,23 @@ export default {
 
 <style lang="scss" scoped>
     #sidebar {
-<<<<<<< HEAD
         text-transform: uppercase;
         display: inline-block;
         text-align: left;
         width: 200px;
         position: fixed;
         left: 45px;
-=======
-        //text-transform: uppercase;
-        display: inline-block;
-        text-align: left;
-        width: 160px;
-        position: absolute;
-        left: 40px;
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
         top: 50%;
         transform: translate(0%, -50%);
     }
 
     .logo {
-<<<<<<< HEAD
-        width: 150px;
-=======
         height: 22px;
     }
 
     a{
         color: white;
         text-decoration: none;
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
     }
 
     #navigation {
@@ -83,11 +70,7 @@ export default {
 
         li {
             position: relative;
-<<<<<<< HEAD
-            color: black;
-=======
             color: white;
->>>>>>> 17b3c9b913e52dca0dbc3de2dc0e69afde74ccab
             cursor: pointer;
 
             .title {

@@ -19,10 +19,21 @@ import Product from "../components/Product.vue";
 
 export default {
   name: "Shop",
+  created() {
+      this.loadProducts()
+  },
   computed: {
     products() {
       return this.$store.getters.products;
     },
+  },
+  methods: {
+    async loadProducts(){
+      let apiUrl = 'http://localhost:4000/api/products/get_all_products';
+      console.log("loaded");
+      let response = await this.axios.get(apiUrl);
+        console.log(response);
+    }
   },
   components: {
     Header,

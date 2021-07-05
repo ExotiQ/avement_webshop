@@ -12,7 +12,7 @@ module.exports = {
           allowNull:  false,
           unique:     true
       },
-      image:  Sequelize.BLOB,
+      image:  Sequelize.TEXT,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

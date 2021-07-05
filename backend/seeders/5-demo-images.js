@@ -1,4 +1,4 @@
-const fs = require('fs');
+
 'use strict';
 
 
@@ -8,14 +8,14 @@ module.exports = {
     return queryInterface.bulkInsert('e_images', [{
         id:         1,
         name:       'skull_tshirt_cropped.jpg',
-        image:      fs.readFileSync('./resources/skull_tshirt_cropped.jpg'),
+        image:      './resources/skull_tshirt_cropped.jpg',
         createdAt:  new Date(),
         updatedAt:  new Date()
       },
       {
         id:         2,
         name:       'bigskull_tshirt_cropped.jpg',
-        image:      fs.readFileSync('./resources/bigskull_tshirt_cropped.jpg'),
+        image:      './resources/bigskull_tshirt_cropped.jpg',
         createdAt:  new Date(),
         updatedAt:  new Date()
       }

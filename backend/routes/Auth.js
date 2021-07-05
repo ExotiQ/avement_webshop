@@ -47,14 +47,10 @@ auth.post('/register', async function (req, res) {
           lastName: lastName,
           email: email,
           password: password
-        }).then(() => {
-          res.status(200).json("User registered");
-        }).catch(function (err) {
-          res.status(400).json(err);
         });
-      
+      res.status(200).json("registered");
     } else {
-      res.status(409).json("Username already registered");
+      res.status(409).json("already registered");
     }
     }
 })
@@ -72,20 +68,17 @@ auth.post('/edit/:id', authentificate, async function (req, res) {
 
   console.log(id);
   if(account.isAdmin === true) {
-    User.update( { 
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      isAdmin: admin
-      }, { 
-        where: { id: id } 
-      }).then(function(affectedRows) {
+    User.update( { firstName: firstName, lastName: lastName, email: email, password: password, isAdmin: admin  }, { where: { id: id } } )
+    .then(function(affectedRows) {
       res.status(200).json("updated " + affectedRows);
-      }).catch(function (err) {
-        res.status(400).json(err);
-      });
+    })
   } else res.status(401).json("UNAUTHORIZED");
+})
+
+auth.get('/test', authentificate, async function (req, res) {
+  const account = await User.findOne({ where: { email: req.user.username } });
+  
+  res.status(200).json(account);
 })
 
 module.exports = auth;

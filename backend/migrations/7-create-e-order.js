@@ -18,9 +18,18 @@ module.exports = {
           type:           Sequelize.DATE,
           defaultValue:   Sequelize.NOW
       },
-      fullfilled: Sequelize.BOOLEAN,
-      returned:   Sequelize.BOOLEAN,
-      canceled:   Sequelize.BOOLEAN,
+      fullfilled: {
+          type:         Sequelize.BOOLEAN,
+          defaultValue: false
+      },
+      returned: {
+          type:         Sequelize.BOOLEAN,
+          defaultValue: false
+      },
+      canceled: {
+          type:         Sequelize.BOOLEAN,
+          defaultValue: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

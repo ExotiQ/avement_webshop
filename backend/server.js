@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const db = require('./config/database');
 const User = require('./models/e_user')
 
@@ -8,6 +9,9 @@ async function main() {
 
   db.authenticate().then(() => console.log("Connected to database..."))
   await db.sync()
+
+  app.use(cors());
+  app.options('*', cors());
 
   const Products = require("./routes/Products");
   app.use("/api/products", Products);

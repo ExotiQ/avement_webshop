@@ -9,12 +9,13 @@
         @mouseleave="hover = false"
         class="container"
       >
-        <img :src="require(`../assets/${list.img[0].src}`)" alt="" />
+        <img :src="require(`.${list.image[0]}`)" alt="" />
         <div class="text">
           <p v-if="hover" class="name info">{{ list.name }}</p>
           <p v-if="hover" class="info">{{ list.price }}€</p>
         </div>
       </div>
+      <p>{{ list.name }}</p>
     </router-link>
   </div>
 </template>

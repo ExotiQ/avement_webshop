@@ -48,6 +48,15 @@ module.exports = {
       quantity: 399,
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    {
+      id: 6,
+      p_id: 2,
+      size: 'S',
+      color: "black",
+      quantity: 399,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }
   ]);
   },

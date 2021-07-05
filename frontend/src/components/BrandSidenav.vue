@@ -44,12 +44,12 @@ export default {
 
 <style lang="scss" scoped>
     #sidebar {
-        text-transform: uppercase;
+        
         display: inline-block;
         text-align: left;
-        width: 200px;
+        width: 160px;
         position: fixed;
-        left: 45px;
+        left: 40px;
         top: 50%;
         transform: translate(0%, -50%);
     }

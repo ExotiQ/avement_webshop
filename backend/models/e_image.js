@@ -14,7 +14,7 @@ e_image.init({
         allowNull:  false,
         unique:     true
     },
-    image:  Sequelize.BLOB
+    image:  Sequelize.TEXT
 }, { sequelize, modelName: "e_image" });
 
 module.exports = e_image;

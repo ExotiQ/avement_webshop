@@ -20,9 +20,18 @@ e_order.init({
         type:           Sequelize.DATE,
         defaultValue:   Sequelize.NOW
     },
-    fullfilled: Sequelize.BOOLEAN,
-    returned:   Sequelize.BOOLEAN,
-    canceled:   Sequelize.BOOLEAN
+    fullfilled:  {
+        type:           Sequelize.BOOLEAN,
+        defaultValue:   false
+    },
+    returned:    {
+        type:           Sequelize.BOOLEAN,
+        defaultValue:   false
+    },
+    canceled:    {
+        type:           Sequelize.BOOLEAN,
+        defaultValue:   false
+    }
 }, { sequelize, modelName: "e_order"});
 
 module.exports = e_order;

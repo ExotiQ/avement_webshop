@@ -18,6 +18,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -94,3 +95,15 @@ body{
   }
 }
 </style>
+=======
+// @ is an alias to /src
+import HelloWorld from "@/components/HelloWorld.vue";
+
+export default {
+  name: "Home",
+  components: {
+    HelloWorld,
+  },
+};
+</script>
+>>>>>>> backend

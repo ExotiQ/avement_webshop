@@ -10,8 +10,32 @@ module.exports = {
       updatedAt: new Date()
     },
     {
-      p_id:     2,
-      i_id:     2,
+      p_id:     6,
+      i_id:     3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      p_id:     10,
+      i_id:     4,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      p_id:     13,
+      i_id:     5,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      p_id:     14,
+      i_id:     6,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      p_id:     15,
+      i_id:     7,
       createdAt: new Date(),
       updatedAt: new Date()
     }

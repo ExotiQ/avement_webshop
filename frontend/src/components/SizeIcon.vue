@@ -1,5 +1,5 @@
 <template>
-  <div class="sizeicon">
+  <div class="sizeicon" :style="selectedStyling()">
     <p>{{ size }}</p>
   </div>
 </template>
@@ -9,10 +9,25 @@ export default {
   name: "SizeIcon",
   computed: {},
   components: {},
+  methods: {
+    selectedStyling(){
+      var style;
+      if(this.selected == this.id){
+        style = { backgroundColor: 'black', color: 'white'};
+      return style;
+      }
+    }
+  },
   props: {
     size: {
       type: String,
     },
+    id: {
+      type: Number,
+    },
+    selected: {
+      type: Number,
+    }
   },
 };
 </script>

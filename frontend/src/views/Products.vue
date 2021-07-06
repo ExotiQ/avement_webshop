@@ -1,7 +1,7 @@
 <template>
   <div class="products">
     <Header />
-    <div class="container">
+    <div class="container" >
       <ProductDetails
         v-for="(item, index) in filterProduct"
         :key="'item' + index"
@@ -19,12 +19,21 @@ import ProductDetails from "../components/ProductDetails.vue";
 
 export default {
   name: "Products",
+  mounted() {
+      this.loadProducts()
+  },
+  data() {
+    return{
+      loading: false,
+      items: []
+    }
+  },
   computed: {
     products() {
       return this.$store.getters.products;
     },
     filterProduct() {
-      return this.products.filter(
+      return this.items.filter(
         (i) => i.name === this.$route.params.product_id
       );
     },
@@ -33,6 +42,21 @@ export default {
     Header,
     Sidenav,
     ProductDetails,
+  },
+  methods: {
+    async loadProducts(){
+      this.loading = true;
+      let apiUrl = 'http://localhost:4000/api/products/get_all_products';
+      console.log("loaded");
+      try{
+        let response = await this.axios.get(apiUrl);
+        this.items = response.data;
+        this.loading = false;
+        console.log(response.data[0].name);
+      } catch (e) {
+        console.error(e);
+      }
+    },
   },
 };
 </script>

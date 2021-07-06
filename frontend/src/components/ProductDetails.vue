@@ -3,22 +3,30 @@
     <div class="container">
       <img
         class="mainimg"
-        :src="require(`../assets/${list.img[0].src}`)"
+        :src="require(`../resources/${mainImg}`)"
         alt=""
       />
       <div class="aside_right">
-        <p class="name">{{ list.name }}</p>
+        <p class="name" >{{ list.name }}</p>
         <p class="price">€{{ list.price }}</p>
         <div class="imgcontainer">
           <img
             class="smallimg"
-            v-for="items in list.img"
-            :key="items"
-            :src="require(`../assets/${items.src}`)"
-            alt=""
+            v-for="images in imgFilter"
+            :key="images"
+            :src="require(`../resources/${images}`)"
+            @click="mainImg = images"
+            alt="Product Img"
           />
         </div>
-        <SizeIcon v-for="tags in list.stock" :key="tags" :size="tags.size" />
+        <SizeIcon
+          @click.native="changeSelected(tags.size, index)" 
+          v-for="(tags, index) in list.stock" 
+          :key="'tags' + index" 
+          :size="tags.size" 
+          :selected="selectedSizeId" 
+          :id="index"
+        />
         <button class="addbtn" @click="addToCart()">In den Warenkorb</button>
         <p class="info">{{ list.info }}</p>
         <a class="tabelle" href=""><p>Größentabelle</p></a>
@@ -35,7 +43,24 @@ export default {
   components: {
     SizeIcon,
   },
-  computed: {},
+  created(){
+    console.log(this.list.image.filter(
+        (i) => i != null));
+  },
+  data(){
+    return{
+      mainImg: this.list.image[0],
+      selectedSize: this.list.stock[0].size,
+      selectedSizeId: 0,
+    }
+  },
+  computed: {
+    imgFilter() {
+      return this.list.image.filter(
+        (i) => i != null
+      );
+    },
+  },
   props: {
     list: {
       type: Object,
@@ -48,8 +73,14 @@ export default {
         quantity: 1,
       });
     },
+    changeSelected(a, id) {
+      this.selectedSize = a;
+      this.selectedSizeId = id;
+      console.log(this.selectedSize);
+    }
   },
 };
+
 </script>
 
 <style lang="scss" scoped>
@@ -69,6 +100,7 @@ export default {
 .smallimg {
   width: 44px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .imgcontainer {

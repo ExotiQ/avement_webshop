@@ -18,6 +18,41 @@ module.exports = {
         image:      'bigskull_tshirt_cropped.jpg',
         createdAt:  new Date(),
         updatedAt:  new Date()
+      },
+      {
+        id:         3,
+        name:       'beigesweater.png',
+        image:      'beigesweater.png',
+        createdAt:  new Date(),
+        updatedAt:  new Date()
+      },
+      {
+        id:         4,
+        name:       'cargo_pants.png',
+        image:      'cargo_pants.png',
+        createdAt:  new Date(),
+        updatedAt:  new Date()
+      },
+      {
+        id:         5,
+        name:       'fanny_pack.png',
+        image:      'fanny_pack.png',
+        createdAt:  new Date(),
+        updatedAt:  new Date()
+      },
+      {
+        id:         6,
+        name:       'fanny_pack_beige.png',
+        image:      'fanny_pack_beige.png',
+        createdAt:  new Date(),
+        updatedAt:  new Date()
+      },
+      {
+        id:         7,
+        name:       'cuban_chain.png',
+        image:      'cuban_chain.png',
+        createdAt:  new Date(),
+        updatedAt:  new Date()
       }
     ]);
   },

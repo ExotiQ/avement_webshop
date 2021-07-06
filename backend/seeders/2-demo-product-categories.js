@@ -18,7 +18,7 @@ module.exports = {
     },
     {
       id: 3,
-      name: 'clothing oder accessoires',
+      name: 'Accessoires',
       createdAt: new Date(),
       updatedAt: new Date()
     }

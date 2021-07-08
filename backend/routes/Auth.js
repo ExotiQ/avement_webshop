@@ -27,7 +27,7 @@ auth.get('/login', async function (req, res) {
           const accessToken = jwt.sign({ id: account.id }, SECRET);
           res.status(200).json({accessToken});
         } else {
-          res.status(200).json("Username or password incorrect");
+          res.status(400).json("Username or password incorrect");
         }
       };
   } else {
@@ -73,12 +73,6 @@ auth.post('/edit/:id', authentificate, async function (req, res) {
       res.status(200).json("updated " + affectedRows);
     })
   } else res.status(401).json("UNAUTHORIZED");
-})
-
-auth.get('/test', authentificate, async function (req, res) {
-  const account = await User.findOne({ where: { email: req.user.username } });
-  
-  res.status(200).json(account);
 })
 
 module.exports = auth;

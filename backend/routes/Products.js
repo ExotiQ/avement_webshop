@@ -93,7 +93,7 @@ products.get('/product_page/:name/:color', async function (req, res) {
 
 products.get('/get_all_products', async function (req, res) {
   await db.query(
-    `SELECT p_v.id AS id, p.name AS name, p_v.color AS color, p.price AS price, c.name AS category, array_agg(im.image) AS image, json_agg(json_build_object('size', p_v.size, 'amount', p_v.quantity)) AS stock FROM  e_products p JOIN e_product_variants p_v ON p.id = p_v.p_id LEFT JOIN r_product_images p_i ON p_v.id = p_i.p_id LEFT JOIN e_images im ON p_i.i_id = im.id JOIN enum_categories c ON c.id = p.category GROUP BY p_v.id, p.name, p_v.color, c.name, p.price;`,
+  `SELECT p.name AS name, p_v.color AS color, p.price AS price, c.name AS category, p.name || p_v.color AS unique_token, array_agg(im.image) AS image, json_agg(json_build_object('size', p_v.size, 'amount', p_v.quantity)) AS stock FROM  e_products p JOIN e_product_variants p_v ON p.id = p_v.p_id JOIN enum_categories c ON c.id = p.category LEFT JOIN r_product_images p_i ON p_v.id = p_i.p_id LEFT JOIN e_images im ON p_i.i_id = im.id GROUP BY p.id, p.name, p_v.color, c.name, p.price, unique_token;`,
   { type: QueryTypes.SELECT }).then(function(result) {
     if(result !== null) res.status(200).json(result);
     else res.status(400).json("NO PRODUCTS IN THE DATABASE");

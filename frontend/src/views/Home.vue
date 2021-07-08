@@ -1,11 +1,6 @@
 <template>
   <div id="app">
     <Header color="white" />
-    <!--<div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view /> -->
     <div id="background"></div>
     <div id="center-block">
       <img
@@ -87,7 +82,7 @@ body {
 }
 
 #center-logo {
-  height: 96px;
+  width: 100%;
 }
 
 #nav {
@@ -99,4 +94,29 @@ body {
     }
   }
 }
+
+@media only screen and (max-width: 600px){
+
+  #center-block{
+    width: calc(100vw - 124px);
+    text-align: center;
+    
+  }
+
+}
+
+@media only screen and (max-width: 499px){
+
+  .align-left {
+    float: left;
+    margin: 0px!important;
+  }
+
+  .align-right {
+    float: right;
+    margin: 0px!important;
+  }
+
+}
+
 </style>

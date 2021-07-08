@@ -1,7 +1,8 @@
 <template>
   <div class="cart">
     <Header />
-    <Product v-for="(item, index) in cart" :key="'item' + index" :list="item" />
+    {{ cart[0].product.name }}
+    <Product v-for="(item, index) in cart" :key="'item' + index" :list="item.product" />
   </div>
 </template>
 

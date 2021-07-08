@@ -64,11 +64,23 @@ export default {
 .container {
   display: inline-block;
   width: calc(100vw - 120px);
-  height: 650px;
   position: absolute;
   top: 50%;
   left: 60px;
   transform: translate(0, -50%);
   //background-color: #333;
 }
+
+@media only screen and (max-width: 600px){
+
+
+  .container {
+    width: calc(100vw - 40px);
+    left: 20px;
+    top: 270px;
+    transform: translate(0, 0);
+  }
+
+}
+
 </style>

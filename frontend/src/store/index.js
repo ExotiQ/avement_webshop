@@ -5,6 +5,8 @@ import Cookies from 'js-cookie'; */
 
 Vue.use(Vuex);
 
+let cart = window.localStorage.getItem('cart');
+
 export default new Vuex.Store({
   state: {
     /* plugins: [
@@ -40,141 +42,7 @@ export default new Vuex.Store({
       { title: "Komposition", href: "#komposition" },
       { title: "Layoutgenerator", href: "#layoutgenerator" },
     ],
-    products: [
-      {
-        name: "Metal Tee",
-        color: "black",
-        price: 29.99,
-        img: [{ src: "beigesweater.png" }, { src: "yellowsweater.png" }],
-        stock: [
-          {
-            size: "xs",
-            amount: 20,
-          },
-          {
-            size: "s",
-            amount: 20,
-          },
-          {
-            size: "m",
-            amount: 20,
-          },
-          {
-            size: "l",
-            amount: 20,
-          },
-          {
-            size: "xl",
-            amount: 20,
-          },
-          {
-            size: "xxl",
-            amount: 20,
-          },
-        ],
-        info:
-          "Short Sleeve Pocket T-Shirt - Graphic Art 100% Pigment Dyed Cotton - Imported This garment has been individually dyed producing a one of a kind result. Due to the unique process color may fade or bleed after wash.",
-      },
-      {
-        name: "Eye-Tee White",
-        color: "black",
-        price: 24.99,
-        img: [{ src: "beigesweater.png" }],
-        stock: [
-          {
-            size: "xs",
-            amount: 20,
-          },
-          {
-            size: "s",
-            amount: 20,
-          },
-          {
-            size: "l",
-            amount: 20,
-          },
-          {
-            size: "xl",
-            amount: 20,
-          },
-          {
-            size: "xxl",
-            amount: 20,
-          },
-        ],
-        info:
-          "Short Sleeve Pocket T-Shirt - Graphic Art 100% Pigment Dyed Cotton - Imported This garment has been individually dyed producing a one of a kind result. Due to the unique process color may fade or bleed after wash.",
-      },
-      {
-        name: "Skull-Tee",
-        color: "black",
-        price: 29.99,
-        img: [{ src: "yellowsweater.png" }],
-        stock: [
-          {
-            size: "xs",
-            amount: 20,
-          },
-          {
-            size: "s",
-            amount: 20,
-          },
-          {
-            size: "m",
-            amount: 20,
-          },
-          {
-            size: "l",
-            amount: 20,
-          },
-          {
-            size: "xl",
-            amount: 20,
-          },
-          {
-            size: "xxl",
-            amount: 20,
-          },
-        ],
-        info:
-          "Short Sleeve Pocket T-Shirt - Graphic Art 100% Pigment Dyed Cotton - Imported This garment has been individually dyed producing a one of a kind result. Due to the unique process color may fade or bleed after wash.",
-      },
-      {
-        name: "Eye-Tee Black",
-        color: "black",
-        price: 24.99,
-        img: [{ src: "beigesweater.png" }],
-        stock: [
-          {
-            size: "xs",
-            amount: 20,
-          },
-          {
-            size: "s",
-            amount: 20,
-          },
-          {
-            size: "m",
-            amount: 20,
-          },
-          {
-            size: "l",
-            amount: 20,
-          },
-          {
-            size: "xl",
-            amount: 20,
-          },
-          {
-            size: "xxl",
-            amount: 20,
-          },
-        ],
-        info:
-          "Short Sleeve Pocket T-Shirt - Graphic Art 100% Pigment Dyed Cotton - Imported This garment has been individually dyed producing a one of a kind result. Due to the unique process color may fade or bleed after wash.",
-      },
-    ],
-    cart: [],
+    cart: cart ? JSON.parse(cart) : [],
     branddata: [
       {
         textpos: "top",
@@ -741,6 +609,7 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+
     addToCart(state, { product, quantity }) {
       let productInCart = state.cart.find((item) => {
         return item.product.id === product.id;
@@ -755,7 +624,14 @@ export default new Vuex.Store({
         product,
         quantity,
       });
+
+      this.commit('saveData');
     },
+
+    saveData(state){
+      window.localStorage.setItem('cart', JSON.stringify(state.cart));
+    }
+
   },
   actions: {
     addProductToCart({ commit }, { product, quantity }) {

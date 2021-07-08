@@ -9,7 +9,7 @@
         :list="item"
       />
     </div>
-    <Sidenav />
+    <Sidenav class="sidenav" />
   </div>
 </template>
 
@@ -59,12 +59,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+
+.container{
   display: inline-block;
+ 
   margin-left: 200px;
   margin-top: 140px;
+  margin-bottom: 200px;
   width: calc(100vw - 240px);
-  height: 500px;
+}
+
+@media only screen and (max-width: 600px){
+
+  .sidenav{
+    display: none;
+  }
+
+  .container{
+    width: calc(100% - 20px);
+    margin-left: 10px;
+  }
+
+
 }
 
 .lds-ellipsis {
@@ -125,4 +141,5 @@ export default {
     transform: translate(24px, 0);
   }
 }
+
 </style>

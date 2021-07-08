@@ -7,7 +7,7 @@
           :src="require(`../assets/schriftlogo-${color}.svg`)"
           alt="logo"
       /></a>
-      <a class="align-left" href="/search" :style="{ color: color }">Suche</a>
+      <!--<a class="align-left" href="/search" :style="{ color: color }">Suche</a>-->
       <a class="align-left" href="/Shop" :style="{ color: color }">Shop</a>
       <a class="align-right" href="/cart" :style="{ color: color }"
         >Warenkorb ({{ cartItemCount }})</a
@@ -65,4 +65,14 @@ a {
   margin: 0px 0px 0px 20px;
   text-decoration: none;
 }
+
+@media only screen and (max-width: 800px){
+
+  #container{
+    padding: 67px 20px 20px 20px;
+    width: calc(100% - 40px);
+  }
+
+}
+
 </style>

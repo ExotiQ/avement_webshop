@@ -1,9 +1,12 @@
 <template>
   <div>
-    <a href="/Shop/tops">TOPS</a>
-    <a href="/Shop/tops">BOTTOMS</a>
-    <a href="/Shop/tops">ACCESORIES</a>
-    <a style="color: red" href="/Shop/tops">SALE</a>
+    
+    
+    <a href="/Shop">ALL</a>
+    <a href="/Shop/Tops">TOPS</a>
+    <a href="/Shop/Bottoms">BOTTOMS</a>
+    <a href="/Shop/Accessoires">ACCESORIES</a>
+    <a style="color: red" href="/Shop/Sale">SALE</a>
   </div>
 </template>
 
@@ -30,6 +33,7 @@ a {
   display: inline-block;
   color: black;
   margin-bottom: 10px;
+  width: 100%;
   font-weight: 500;
   font-size: 14px;
 }

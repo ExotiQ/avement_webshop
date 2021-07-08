@@ -6,3 +6,16 @@ A project by Flo, Karl and Robin
 - Vue.js Frontend
 - node.js Backend
 - postgres Database
+
+## Documentation of the API endpoints for postman
+[Postman documentation](https://documenter.getpostman.com/view/11188306/Tzm5GGk8)
+
+
+
+## How to setup local Docker container
+in project directory execute following commands:
+```
+docker compose up -d
+cd backend
+npm run recreate
+```

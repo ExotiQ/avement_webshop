@@ -43,8 +43,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
     #sidebar {
-        
         display: inline-block;
         text-align: left;
         width: 160px;

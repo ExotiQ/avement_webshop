@@ -168,13 +168,13 @@ export default {
 }
 
 
-@media only screen and (max-width: 1200px){
+@media only screen and (max-width: 1300px){
   .mainimg {
-    left: calc(50% + (100vw - 1200px)) ;;
+    left: calc(50% + (100vw - 1300px)) ;;
   }
 }
 
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 1060px){
 
   .mainimg {
     left: 0px;
@@ -204,14 +204,28 @@ export default {
   
 }
 
+@media only screen and (max-width: 600px){
+
+  .mainimg {
+    height: 420px;
+    width: 100%;
+    position: relative;
+  }
+
+   .aside_right{
+    position: relative;
+    top: -180px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+  }
+
+}
+
 @media only screen and (max-height: 710px){
 
   .mainimg {
     height: 370px;
-  }
-
-  .mainimg {
-    width: calc(100vw - 560px);
   }
 
 }

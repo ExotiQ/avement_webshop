@@ -4,7 +4,7 @@
       <i class="fas fa-bars"></i>
     </div>
     <div class="sidenav">
-      <BrandSidenav />
+      <BrandSidenav v-if="open" />
       <div class="opener" @click="opennav">
         <i class="fas fa-times"></i>
       </div>
@@ -144,16 +144,20 @@ p {
 }
 
 @media screen and (min-width: 2080px) {
+
   .wrapper {
     //margin-left: calc((100vw - 1590px)/2);
   }
+
 }
 
 @media screen and (max-width: 1400px) {
+
   .wrapper {
     width: calc(100%);
     margin-left: 0px;
   }
+
   .sidenav {
     width: 0px;
     overflow: hidden;

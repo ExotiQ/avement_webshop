@@ -57,7 +57,7 @@ img {
   left: 0px;
   top: calc(50% - 30px);
   transform: translate(0,-50%);
-
+  cursor: pointer;
   width: 100%;
 }
 
@@ -106,6 +106,27 @@ p {
   .container {
     width: calc((100% - 60px) / 2);
     height: calc((100vw - 0px) / 2);
+  }
+
+}
+
+@media only screen and (max-width: 600px){
+
+  .container {
+    width: calc((100% - 40px) / 2);
+    height: calc((100vw - 0px) / 2);
+    margin: 10px;
+  }
+
+}
+
+@media only screen and (max-width: 499px){
+
+  .container {
+    width: calc((100% - 40px));
+    height: calc((100vw - 0px));
+    margin: 10px;
+    margin-bottom: 30px;
   }
 
 }

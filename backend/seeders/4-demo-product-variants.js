@@ -27,7 +27,7 @@ module.exports = {
       p_id: 1,
       size: 'L',
       color: "black",
-      quantity: 149,
+      quantity: 0,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -126,7 +126,7 @@ module.exports = {
       p_id: 4,
       size: 'One Size',
       color: "beige",
-      quantity: 20,
+      quantity: 0,
       createdAt: new Date(),
       updatedAt: new Date()
     }
@@ -135,8 +135,8 @@ module.exports = {
       id: 15,
       p_id: 5,
       size: 'One Size',
-      color: "beige",
-      quantity: 20,
+      color: "silver",
+      quantity: 0,
       createdAt: new Date(),
       updatedAt: new Date()
     }

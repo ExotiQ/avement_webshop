@@ -38,6 +38,24 @@ module.exports = {
       i_id:     7,
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    {
+      p_id:     1,
+      i_id:     8,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      p_id:     6,
+      i_id:     9,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      p_id:     1,
+      i_id:     10,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }
   ]);
   },

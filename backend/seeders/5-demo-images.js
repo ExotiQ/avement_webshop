@@ -53,6 +53,27 @@ module.exports = {
         image:      'cuban_chain.png',
         createdAt:  new Date(),
         updatedAt:  new Date()
+      },
+      {
+        id:         8,
+        name:       't_shirt_model.jpeg',
+        image:      't_shirt_model.jpeg',
+        createdAt:  new Date(),
+        updatedAt:  new Date()
+      },
+      {
+        id:         9,
+        name:       'beige_sweater_model_2.jpeg',
+        image:      'beige_sweater_model_2.jpeg',
+        createdAt:  new Date(),
+        updatedAt:  new Date()
+      },
+      {
+        id:         10,
+        name:       'black_tshirt_model.jpeg',
+        image:      'black_tshirt_model.jpeg',
+        createdAt:  new Date(),
+        updatedAt:  new Date()
       }
     ]);
   },

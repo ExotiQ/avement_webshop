@@ -18,7 +18,7 @@ async function main() {
 }
 
 // SHOW ALL USER ORDERS
-order.post('/all', authentificate, async function (req, res) {
+order.get('/all', authentificate, async function (req, res) {
     const { name } = req.body;
     const orders = await Order.findAll({ where: { u_id: req.user.id } });
 

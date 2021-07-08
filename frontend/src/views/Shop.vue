@@ -8,13 +8,6 @@
         :key="'item' + index"
         :list="item"
       />
-      <ul>
-        <li v-for="item in items" :key="item.id">
-          
-          {{item.image[0]}}
-          
-        </li>
-      </ul>
     </div>
     <Sidenav />
   </div>
@@ -29,7 +22,7 @@ import Product from "../components/Product.vue";
 export default {
   name: "Shop",
   mounted() {
-      this.loadProducts()
+      this.loadProducts();
   },
   data() {
     return{
@@ -37,11 +30,7 @@ export default {
        items: []
     }
   },
-  computed: {
-    products() {
-      return this.$store.getters.products;
-    },
-  },
+  computed: {},
   methods: {
     async loadProducts(){
       this.loading = true;
@@ -49,9 +38,13 @@ export default {
       console.log("loaded");
       try{
         let response = await this.axios.get(apiUrl);
-        this.items = response.data;
+        if(this.$route.params.filter == undefined){
+          this.items = response.data;
+        }
+        else{
+          this.items = response.data.filter((i) => i.category.toLowerCase() == this.$route.params.filter.toLowerCase()); 
+        }
         this.loading = false;
-        console.log(response.data[0].name);
       } catch (e) {
         console.error(e);
       }
@@ -70,7 +63,8 @@ export default {
   display: inline-block;
   margin-left: 200px;
   margin-top: 140px;
-  width: calc(100vw - 270px);
+  width: calc(100vw - 240px);
+  height: 500px;
 }
 
 .lds-ellipsis {

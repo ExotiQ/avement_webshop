@@ -1,11 +1,7 @@
 <template>
   <div class="product">
     <div class="container">
-      <img
-        class="mainimg"
-        :src="require(`../resources/${mainImg}`)"
-        alt=""
-      />
+      <div class="mainimg" :style="{ backgroundImage: 'url(' + require(`../resources/${mainImg}`) +')' }"></div>
       <div class="aside_right">
         <p class="name" >{{ list.name }}</p>
         <p class="price">€{{ list.price }}</p>
@@ -28,8 +24,8 @@
           :id="index"
         />
         <button class="addbtn" @click="addToCart()">In den Warenkorb</button>
-        <p class="info">{{ list.info }}</p>
-        <a class="tabelle" href=""><p>Größentabelle</p></a>
+        <!--<p class="info">{{ list.info }}</p>
+        <a class="tabelle" href=""><p>Größentabelle</p></a>-->
       </div>
     </div>
   </div>
@@ -81,7 +77,7 @@ export default {
   },
 };
 
-</script>
+</script> 
 
 <style lang="scss" scoped>
 .container {
@@ -95,6 +91,10 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   height: 460px;
+  width: 460px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .smallimg {
@@ -154,9 +154,11 @@ export default {
   margin-top: 90px;
   font-size: 12px;
 }
+
 .tabelle {
   text-decoration: none;
 }
+
 .tabelle p {
   margin-top: 10px;
   font-size: 12px;
@@ -164,4 +166,54 @@ export default {
   text-decoration: none;
   color: black;
 }
+
+
+@media only screen and (max-width: 1200px){
+  .mainimg {
+    left: calc(50% + (100vw - 1200px)) ;;
+  }
+}
+
+@media only screen and (max-width: 1000px){
+
+  .mainimg {
+    left: 0px;
+    transform: translate(0%, -50%);
+    height: 460px;
+  }
+
+}
+
+@media only screen and (max-width: 935px){
+
+  .aside_right{
+    width: calc(100vw - 610px);
+  }
+
+}
+
+@media only screen and (max-width: 800px){
+
+  .aside_right{
+    width: calc(800px - 610px);
+  }
+
+  .mainimg {
+    width: calc(100vw - 340px);
+  }
+  
+}
+
+@media only screen and (max-height: 710px){
+
+  .mainimg {
+    height: 370px;
+  }
+
+  .mainimg {
+    width: calc(100vw - 560px);
+  }
+
+}
+
 </style>

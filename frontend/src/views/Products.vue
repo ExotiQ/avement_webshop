@@ -8,13 +8,12 @@
         :list="item"
       />
     </div>
-    <Sidenav />
+    
   </div>
 </template>
 
 <script>
 import Header from "../components/Header";
-import Sidenav from "../components/Sidenav.vue";
 import ProductDetails from "../components/ProductDetails.vue";
 
 export default {
@@ -34,13 +33,12 @@ export default {
     },
     filterProduct() {
       return this.items.filter(
-        (i) => i.name === this.$route.params.product_id
+        (i) => i.id == this.$route.params.product_id
       );
     },
   },
   components: {
     Header,
-    Sidenav,
     ProductDetails,
   },
   methods: {
@@ -62,6 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .container {
   display: inline-block;
   width: calc(100vw - 120px);

@@ -2,14 +2,16 @@
   <div class="product">
     <router-link
       class="link"
-      :to="{ name: 'Products', params: { product_id: list.name } }"
+      :to="{ name: 'Products', params: { product_id: list.id,  } }"
     >
       <div
         @mouseover="hover = true"
         @mouseleave="hover = false"
         class="container"
       >
-        <img :src="require(`../resources/${list.image[0]}`)" alt="" />
+        <div class="img" :style="{ backgroundImage: 'url(' + require(`../resources/${list.image[0]}`) +')' }">
+          
+        </div>
         <div class="text">
           <p v-if="hover" class="name info">{{ list.name }}</p>
           <p v-if="hover" class="info">{{ list.price }}€</p>
@@ -40,19 +42,36 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  width: calc((100% - 90px) / 3);
+  position: relative;
+  width: calc((100% - 120px) / 4);
+  height: calc((100vw - 0px) / 4);
   margin: 15px;
+  margin-left: 0px;
+  margin-right: 30px;
   float: left;
   text-align: center;
   cursor: pointer;
 }
 img {
+  position: absolute;
+  left: 0px;
+  top: calc(50% - 30px);
+  transform: translate(0,-50%);
+
   width: 100%;
+}
+
+.img {
+  height:  calc(100% - 60px);
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 p {
   margin: 0px;
   margin-bottom: 2px;
-  max-height: 19px;
+  width: 100%;
   font-size: 14px;
   font-weight: 400;
 }
@@ -61,14 +80,34 @@ p {
 }
 
 .text {
-  position: relative;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  height: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%,0%);
+  width: 100%;
 }
 
 .link {
   text-decoration: none;
   color: black;
 }
+
+@media only screen and (max-width: 1200px){
+
+  .container {
+    width: calc((100% - 90px) / 3);
+    height: calc((100vw - 0px) / 3);
+  }
+
+}
+
+@media only screen and (max-width: 800px){
+
+  .container {
+    width: calc((100% - 60px) / 2);
+    height: calc((100vw - 0px) / 2);
+  }
+
+}
+
 </style>

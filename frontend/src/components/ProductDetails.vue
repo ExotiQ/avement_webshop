@@ -72,7 +72,6 @@ export default {
     changeSelected(a, id) {
       this.selectedSize = a;
       this.selectedSizeId = id;
-      console.log(this.selectedSize);
     }
   },
 };

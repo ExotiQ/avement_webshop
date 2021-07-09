@@ -617,6 +617,7 @@ export default new Vuex.Store({
 
       if (productInCart) {
         productInCart.quantity += quantity;
+        this.commit('saveData');
         return;
       }
 
@@ -630,7 +631,26 @@ export default new Vuex.Store({
 
     saveData(state){
       window.localStorage.setItem('cart', JSON.stringify(state.cart));
-    }
+    },
+
+    removeItem(state, { product}) {
+      let productInCart = state.cart.find((item) => {
+        return item.product.id === product.id;
+      });
+
+      if (productInCart) {
+        productInCart.quantity --;
+        this.commit('saveData');
+        return;
+      }
+   },
+
+    deleteItem(state, item) {
+      let index = state.cart.indexOf(item);
+      state.cart.splice(index,1);
+
+      this.commit('saveData');
+   }
 
   },
   actions: {

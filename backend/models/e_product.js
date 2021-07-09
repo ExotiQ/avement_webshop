@@ -11,7 +11,8 @@ e_product.init({
     },
     name: {
         type:       Sequelize.STRING(50),
-        allowNull:  false
+        allowNull:  false,
+        unique:     true
     },
     category: {   
         type:       Sequelize.INTEGER,

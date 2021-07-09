@@ -27,4 +27,8 @@ r_ordered_product.init({
     }
 }, { sequelize, modelName: "r_ordered_product"});
 
+r_ordered_product.beforeCreate(function (o_p, options) {
+    sequelize.query(`UPDATE e_product_variants SET quantity = quantity - ${o_p.quantity} WHERE  id = ${o_p.p_id};`);
+});
+
 module.exports = r_ordered_product;

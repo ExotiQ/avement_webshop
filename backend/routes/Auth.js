@@ -34,10 +34,12 @@ auth.get('/login', async function (req, res) {
             'isAdmin':    account.isAdmin
           }
           res.status(200).json({accessToken, account_data});
-        } else {
+      } else {
           res.status(200).json("Username or password incorrect");
-        }
-      };
+      }
+    } else {
+        res.send('Username or password incorrect');
+    }
   } else {
       res.send('Username or password incorrect');
   }

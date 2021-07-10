@@ -20,9 +20,11 @@ async function main() {
 order.post('/all', authentificate, async function (req, res) {
     const { name } = req.body;
     const orders = await Order.findAll({ where: { u_id: req.user.id } });
-
-    if(orders.length() > 0) res.status(200).json(orders);
-    else res.status(200).json("no orders");
+    const account = await User.findOne({ where: { id: req.user.id } });
+    if(account.isAdmin === true) {
+      if(orders.length() > 0) res.status(200).json(orders);
+      else res.status(200).json("no orders");
+    }
 
 });
 
@@ -39,6 +41,8 @@ order.post('/:id', authentificate, async function (req, res) {
 });
 */
 
+
+//PLACE AN ORDER
 order.post('/add', authentificate, async function (req, res) {
   const items = req.body.order;
   const account = await User.findOne({ where: { id: req.user.id } });

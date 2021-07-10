@@ -19,7 +19,18 @@ e_product_variant.init({
     },
     size:       Sequelize.STRING(10),
     color:      Sequelize.STRING(20),
-    quantity:   Sequelize.INTEGER
+    quantity: {
+        type:   Sequelize.INTEGER,
+        min:    0
+    }   
+},
+{
+    indexes: [
+        {
+            unique: true,
+            fields: ['p_id', 'color']
+        }
+    ]
 }, { sequelize, modelName: "e_product_variant" });
 
 module.exports = e_product_variant;

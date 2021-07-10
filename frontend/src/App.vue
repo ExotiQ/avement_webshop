@@ -30,6 +30,10 @@ textarea {
   float: right;
 }
 
+html{
+  
+}
+
 body {
   margin: 0px;
 }

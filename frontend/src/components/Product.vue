@@ -2,7 +2,7 @@
   <div class="product">
     <router-link
       class="link"
-      :to="{ name: 'Products', params: { product_id: list.id,  } }"
+      :to="{ name: 'Products', params: { product_id: list.unique_token,  } }"
     >
       <div
         @mouseover="hover = true"

@@ -80,7 +80,7 @@ products.post('/remove/:id',authentificate, async function (req, res) {
 products.get('/product_page/:name/:color', async function (req, res) {
   const { name, color } = req.params;
   await db.query(
-  `SELECT p_v.id AS id, p.name AS name, p_v.color AS color, p.price AS price, array_agg(im.image) AS image, json_agg(json_build_object('size', p_v.size, 'amount', p_v.quantity)) AS stock FROM  e_products p JOIN e_product_variants p_v ON p.id = p_v.p_id LEFT JOIN r_product_images p_i ON p_v.id = p_i.p_id LEFT JOIN e_images im ON p_i.i_id = im.id WHERE p.name = ${"'" + name + "'"} AND p_v.color = ${"'" + color + "'"} GROUP BY p_v.id, p.name, p_v.color, p.price;`,
+  `WITH image AS (SELECT p_v.p_id, p_v.color, array_agg(i.image) AS images FROM e_product_variants p_v JOIN r_product_images p_i ON p_v.id = p_i.p_id LEFT JOIN e_images i ON p_i.i_id = i.id GROUP BY p_v.p_id, p_v.color) SELECT p.name AS name, p_v.color AS color, p.price AS price, c.name AS category, p.name || p_v.color AS unique_token, i.images AS image, json_agg(json_build_object('size', p_v.size, 'amount', p_v.quantity)) AS stock FROM e_products p JOIN e_product_variants p_v ON p.id = p_v.p_id JOIN enum_categories c ON c.id = p.category JOIN image i ON i.p_id = p.id AND i.color = p_v.color WHERE p.name = ${name} AND p_v.color = ${color} GROUP BY  p.name, p_v.color, c.name, p.price, unique_token, image;`,
   { type: QueryTypes.SELECT }).then(function(result) {
     console.log(result);
     if(result !== null) res.status(200).json(result);

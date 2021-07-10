@@ -16,10 +16,11 @@
           />
         </div>
         <SizeIcon
-          @click.native="changeSelected(tags.size, index)" 
+          @click.native="changeSelected(tags.size, tags.amount, index)" 
           v-for="(tags, index) in list.stock" 
           :key="'tags' + index" 
           :size="tags.size" 
+          :stock="tags.amount"
           :selected="selectedSizeId" 
           :id="index"
         />
@@ -46,7 +47,7 @@ export default {
   data(){
     return{
       mainImg: this.list.image[0],
-      selectedSize: this.list.stock[0].size,
+      selectedSize: this.startSelected(),
       selectedSizeId: 0,
     }
   },
@@ -67,12 +68,25 @@ export default {
       this.$store.dispatch("addProductToCart", {
         product: this.list,
         quantity: 1,
+        selectedSize: this.selectedSize,
       });
     },
-    changeSelected(a, id) {
-      this.selectedSize = a;
-      this.selectedSizeId = id;
-    }
+    changeSelected(a, num, id) {
+      if(num > 0){
+        this.selectedSize = a;
+        this.selectedSizeId = id;
+      }
+    },
+    startSelected(){
+      if( this.list.stock[0].amount > 0){
+         return this.list.stock[0].size;
+      }
+    },
+    startSelected(){
+      if( this.list.stock[0].amount > 0){
+         return this.list.stock[0].size;
+      }
+    },
   },
 };
 

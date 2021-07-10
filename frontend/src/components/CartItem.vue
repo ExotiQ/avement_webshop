@@ -2,20 +2,24 @@
     <div class="cartitems">
         <router-link
         class="link"
-        :to="{ name: 'Products', params: { product_id: item.id,  } }"
+        :to="{ name: 'Products', params: { product_id: item.unique_token,  } }"
         >
             <div class="img" :style="{ backgroundImage: 'url(' + require(`../resources/${item.image[0]}`) +')' }"></div>
         </router-link>
         <div class="text">
-            <router-link
-            class="link"
-            :to="{ name: 'Products', params: { product_id: item.id,  } }"
-            >
-                <p class="name">{{ item.name }}</p>
-            </router-link>
-            <i class="fas fa-times" @click="deleteItem(item)"></i>
-            <div class="size"><p>M</p></div>
-            <div class="color" :style="{ backgroundColor: `${item.color}`}"></div>
+            <div class="textTop">
+                <router-link
+                class="link"
+                :to="{ name: 'Products', params: { product_id: item.unique_token,  } }"
+                >
+                    <p class="name">{{ item.name }}</p>
+                </router-link>
+                <i class="fas fa-times" @click="deleteItem(object)"></i>
+            </div>
+            <div class="textCenter">
+                <div class="size"><p>{{ selectedSize }}</p></div>
+                <div class="color" :style="{ backgroundColor: `${item.color}`}"></div>
+            </div>
             <div class="number">
                 <p @click="minus()">-</p>
                 <input type="number" min="0" max="5" :value="quantity">
@@ -29,13 +33,23 @@
 <script>
 export default {
     name: "cartItems",
+   
     props: {
         item: {
             type: Object,
         },
+        object: {
+            type: Object,
+        },
         quantity: {
             type: Number,
+        },
+        selectedSize: {
+            type: String,
         }
+    }, 
+    mounted() {
+        this.getStock();
     },
     data() {
         return{
@@ -44,7 +58,10 @@ export default {
     },
     methods: {
         plus() {
-            this.addToCart();
+            this.getStock();
+            if(this.quantity <= this.amount){
+                this.addToCart();
+            }
         },
         minus() {
             if(this.quantity > 1){
@@ -54,6 +71,7 @@ export default {
             }
         },
         deleteItem(item) {
+            console.log(item);
             if (confirm("Willst du das produkt wirklich entfernen?") == true) {
                 this.$store.commit('deleteItem', item);
             }
@@ -61,14 +79,23 @@ export default {
         removeItem() {
             this.$store.commit('removeItem', {
                 product: this.item,
+                selectedSize: this.selectedSize,
             });
         },
         addToCart() {
             this.$store.dispatch("addProductToCart", {
                 product: this.item,
                 quantity: 1,
+                selectedSize: this.selectedSize,
             });
         },
+        getStock() {
+            for(let i =0; i<this.item.stock.length; i++ ){
+                if(this.item.stock[i].size.toUpperCase()== this.selectedSize.toUpperCase()){
+                    this.amount = this.item.stock[i].amount;
+                }
+            }
+        }
     }
 
 }
@@ -77,7 +104,7 @@ export default {
 <style scoped lang="scss">
 
     .cartitems{
-        margin-top: 20px;
+        margin-bottom: 40px;
         height: 130px;
         width: 100%;
         display: inline-block;
@@ -86,9 +113,10 @@ export default {
     .img{
         height: 100%;
         width: 130px;
+        height: 130px;
         margin-right: 20px;
         float: left;
-        background-size: cover;
+        background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
         cursor: pointer;
@@ -100,7 +128,7 @@ export default {
 
     .text{
         float: left;
-        width: 200px;
+        width: 230px;
 
         .name{
             margin: 0px;
@@ -108,11 +136,22 @@ export default {
             font-weight: 600;
             color: black;
             text-decoration: none;
+            width: auto;
+            display: inline-block;
         }
 
         i{
             float: right;
-            margin-top: -20px;
+            cursor: pointer;
+        }
+
+        .textTop{
+            margin-bottom: 5px;
+        }
+
+        .textCenter{
+            width: 100%;
+            display: inline-block;
         }
 
         .size{
@@ -127,7 +166,8 @@ export default {
             p{
                 margin: 0px;
                 font-weight: 500;
-                font-size: 14px;
+                font-size: 10px;
+                line-height: 100%;
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -185,6 +225,13 @@ export default {
         .price{
             margin: 0px;
             font-size: 14px;
+        }
+    }
+
+    @media only screen and (max-width: 830px){
+
+        .text{
+            width: calc(100% - 160px);
         }
     }
 

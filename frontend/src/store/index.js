@@ -2,10 +2,18 @@ import Vue from "vue";
 import Vuex from "vuex";
 /*import createPersistedState from 'vuex-persistedstate';
 import Cookies from 'js-cookie'; */
-
-Vue.use(Vuex);
+import VueAxios from 'vue-axios';
+import axios from 'axios';
+Vue.use(Vuex,VueAxios, axios);
 
 let cart = window.localStorage.getItem('cart');
+
+let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhYTVhMjRiLTEzNDAtNGM5Mi05NTAyLTlhMzVmYjdlYTZlZSIsImlhdCI6MTYyNTg3MTUyMn0.NYl9n0k4yyoreXEQrgUVfxhMIJ9djrqYYFAC5QSvwWU';
+
+axios.post("http://api.rumaholi.local/api/post", [], {headers: { 'Authorization' : 'Bearer '+ token}}).then(response => {
+    let comments = response.data;
+    console.log(comments)
+}) 
 
 export default new Vuex.Store({
   state: {
@@ -560,6 +568,39 @@ export default new Vuex.Store({
         ],
       },
     ],
+    users:[
+      {
+        "id": "687fa47a-7039-46f2-9376-726f580e7398",
+        "firstName": "Florian",
+        "lastName": "Gesell",
+        "email": "gesell@example.com",
+        "isAdmin": true,
+        "password": "$2b$10$dE15MMoqfx4QfFCmiRDOJ.J47bxeR3Qr0.2NFQiO6Qv2UwhvYHNWC",
+        "createdAt": "2021-07-09T12:32:59.355Z",
+        "updatedAt": "2021-07-09T12:32:59.355Z"
+    },
+    {
+        "id": "057e1c1f-5c0a-499f-bf12-32b7194f02f4",
+        "firstName": "Karl",
+        "lastName": "Diedrichsen",
+        "email": "karl@example.com",
+        "isAdmin": false,
+        "password": "$2b$10$dE15MMoqfx4QfFCmiRDOJ.J47bxeR3Qr0.2NFQiO6Qv2UwhvYHNWC",
+        "createdAt": "2021-07-09T12:32:59.355Z",
+        "updatedAt": "2021-07-09T12:32:59.355Z"
+    },
+    {
+        "id": "463d2ae1-0f31-47d3-aa74-dd4c26fde218",
+        "firstName": "Robin",
+        "lastName": "Geramb",
+        "email": "robin@example.com",
+        "isAdmin": false,
+        "password": "$2b$10$dE15MMoqfx4QfFCmiRDOJ.J47bxeR3Qr0.2NFQiO6Qv2UwhvYHNWC",
+        "createdAt": "2021-07-09T12:32:59.355Z",
+        "updatedAt": "2021-07-09T12:32:59.355Z"
+    }
+    ],
+    currentUser: {}
   },
   getters: {
     navigation: (state) => {
@@ -593,7 +634,12 @@ export default new Vuex.Store({
       return state.cart;
     },
     cartItemCount: (state) => {
-      return state.cart.length;
+      let number = 0;
+      for(let i = 0; i < state.cart.length; i++){
+        number += state.cart[i].quantity;
+      }
+      
+      return number;
     },
     cartTotalPrice: (state) => {
       let total = 0;
@@ -610,53 +656,74 @@ export default new Vuex.Store({
   },
   mutations: {
 
-    addToCart(state, { product, quantity }) {
+    SET_USERS(state, users){
+      state.users = users;
+    },
+    LOGOUT_USER(state){
+      state.currentUser = {};
+      window.localStorage.currentUser = JSON.stringify({});
+    },
+    SET_CURRENT_USER(state, user){
+      state.currentUser = user;
+      window.localStorage.currentUser = JSON.stringify(user);
+    },
+    addToCart(state, { product, quantity, selectedSize }) {
       let productInCart = state.cart.find((item) => {
-        return item.product.id === product.id;
+        return item.product.unique_token === product.unique_token && selectedSize === item.selectedSize;
       });
-
       if (productInCart) {
         productInCart.quantity += quantity;
         this.commit('saveData');
         return;
       }
-
       state.cart.push({
         product,
         quantity,
+        selectedSize,
       });
-
       this.commit('saveData');
     },
-
     saveData(state){
       window.localStorage.setItem('cart', JSON.stringify(state.cart));
     },
-
-    removeItem(state, { product}) {
+    removeItem(state, { product, selectedSize}) {
       let productInCart = state.cart.find((item) => {
-        return item.product.id === product.id;
+        return item.product.unique_token === product.unique_token && selectedSize === item.selectedSize;
       });
-
       if (productInCart) {
         productInCart.quantity --;
         this.commit('saveData');
         return;
       }
    },
-
     deleteItem(state, item) {
       let index = state.cart.indexOf(item);
       state.cart.splice(index,1);
 
       this.commit('saveData');
    }
-
   },
   actions: {
-    addProductToCart({ commit }, { product, quantity }) {
-      commit("addToCart", { product, quantity });
+    addProductToCart({ commit }, { product, quantity, selectedSize }) {
+      commit("addToCart", { product, quantity, selectedSize });
     },
+    async loadUsers({commit}) {
+      let apiUrl = 'http://localhost:4000/api/auth/list';
+      let response = await axios.get(apiUrl);
+      let users = response.data;
+      commit('SET_USERS'), users.map(u => u.attributes)
+      
+    },
+    loadCurrentUser({commit}) {
+      let user = JSON.parse(window.localStorage.currentUser);
+      commit('SET_CURRENT_USER', user)
+    },
+    logoutUser({commit}){
+      commit('LOGOUT_USER')
+    },
+    loginUser({commit}, user){
+      commit('SET_CURRENT_USER', user);
+    }
   },
   modules: {},
 });

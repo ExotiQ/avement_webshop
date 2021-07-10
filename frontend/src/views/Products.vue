@@ -33,7 +33,7 @@ export default {
     },
     filterProduct() {
       return this.items.filter(
-        (i) => i.id == this.$route.params.product_id
+        (i) => i.unique_token == this.$route.params.product_id
       );
     },
   },

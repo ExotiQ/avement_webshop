@@ -43,7 +43,7 @@
         <a class="align-right" href="/brand">Brand</a>
       </div>
     </div>
-    <div class="cart">
+    <div class="cart" :style="{ backgroundColor: opColor() }">
       <a class="align-right" :style="{ color: color }" href="/cart">Warenkorb ({{ cartItemCount }})</a >
       <a class="align-right" :style="{ color: color }" href="/Account">Account</a>
     </div>
@@ -86,6 +86,13 @@ export default {
         document.getElementsByClassName("wrapper")[0].style.marginLeft = "0px";
       }
     },
+    opColor(){
+      if(this.color == "white"){
+        return "black";
+      } else{
+        return "white";
+      }
+    }
   }
 };
 </script>
@@ -198,6 +205,13 @@ a {
 
   #container_small, .cart{
     display: block;
+  }
+
+  .cart{
+    display: inline-block;
+    width: calc(100% - 40px);
+    margin: 0px;
+    padding: 20px;
   }
 
 }

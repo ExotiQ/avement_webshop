@@ -25,7 +25,15 @@ auth.get('/login', async function (req, res) {
       if (await account.validPassword(password)) {
           // Generate an access token
           const accessToken = jwt.sign({ id: account.id }, SECRET);
-          res.status(200).json({accessToken});
+          const account_data =
+          {
+            'id':         account.id,
+            'firstName':  account.firstName,
+            'lastName':   account.lastName,
+            'email':      account.email,
+            'isAdmin':    account.isAdmin
+          }
+          res.status(200).json({accessToken, account_data});
         } else {
           res.status(200).json("Username or password incorrect");
         }

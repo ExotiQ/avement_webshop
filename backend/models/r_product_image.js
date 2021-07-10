@@ -9,7 +9,7 @@ r_product_image.init({
         allowNull:      false,
         primaryKey:     true,
         references: {
-            model:  'e_product_variant',
+            model:  'e_product_variants',
             key:    'id'
         }
     },
@@ -18,7 +18,7 @@ r_product_image.init({
         allowNull:      false,
         primaryKey:     true,
         references: {
-            model:  'e_image',
+            model:  'e_images',
             key:    'id'
         }
     }

@@ -82,7 +82,7 @@ export default {
          return this.list.stock[0].size;
       }
     },
-    startSelected(){
+    startSelectedId(){
       if( this.list.stock[0].amount > 0){
          return this.list.stock[0].size;
       }

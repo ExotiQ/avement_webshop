@@ -24,6 +24,7 @@ e_product_variant.init({
         min:    0
     }   
 },
+
 {
     indexes: [
         {
@@ -31,6 +32,7 @@ e_product_variant.init({
             fields: ['p_id', 'color']
         }
     ]
-}, { sequelize, modelName: "e_product_variant" });
+}, 
+{ sequelize, modelName: "e_product_variant" });
 
 module.exports = e_product_variant;

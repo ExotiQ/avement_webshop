@@ -5,7 +5,7 @@ const User = require('../models/e_user')
 
 
 const jwt = require('jsonwebtoken');
-const authentificate = require('../middleware/authentification.js')
+const authentificate = require('../middleware/authentification')
 
 const { SECRET } = process.env;
 

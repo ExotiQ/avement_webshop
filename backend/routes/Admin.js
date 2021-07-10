@@ -4,11 +4,11 @@ const db = require('../config/database');
 const User = require('../models/e_user')
 const Image = require('../models/e_image')
 const Product = require('../models/e_product')
-const Variant = require('../models/e_product_variant')
+//const Variant = require('../models/e_product_variant')
 const Category = require('../models/enum_category')
 
 const jwt = require('jsonwebtoken');
-const authentificate = require('../middleware/authentification.js')
+const authentificate = require('../middleware/authentification')
 
 const { SECRET } = process.env;
 
@@ -59,6 +59,7 @@ admin.post('/category/add', authentificate, async function (req, res) {
 });
 
 // ADD PRODUCT VARIANT
+/*
 admin.post('/product/variant/add', authentificate, async function (req, res) {
   const { p_id, size, color, quantity } = req.body;
   const account = await User.findOne({ where: { id: req.user.id } });
@@ -77,6 +78,7 @@ admin.post('/product/variant/add', authentificate, async function (req, res) {
     });
   } else res.status(401);
 });
+*/
 
 // ADD IMAGE
 admin.post('/image/add', authentificate, async function (req, res) {

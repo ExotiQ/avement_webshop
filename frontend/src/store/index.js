@@ -740,7 +740,7 @@ export default new Vuex.Store({
         return { e };
       }
     },
-    async checkout(order) {
+    async checkout({ commit }, order) {
       try {
         await axios.post(
           "http://localhost:4000/api/order/add",
@@ -750,6 +750,7 @@ export default new Vuex.Store({
             }
           }
         );
+        commit("SET_CURRENT_ORDER", order);
 
       } catch (e) {
         alert(e);

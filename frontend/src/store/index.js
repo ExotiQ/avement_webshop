@@ -763,21 +763,6 @@ export default new Vuex.Store({
         return {Error: 'E-mail ist bereits vergeben'}
       }
     },
-    async loginUser({ commit }, loginInfo) {
-      console.log(loginInfo);
-      try {
-        let response = await axios.post(
-          "http://localhost:4000/api/auth/login",
-          loginInfo
-        );
-        let user = response.data.accessToken;
-        console.log(user);
-        commit("SET_CURRENT_USER", user);
-      } catch (e) {
-        alert(e);
-        return { e };
-      }
-    },
     async checkout({ commit }, order) {
       try {
         await axios.post(

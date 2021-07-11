@@ -3,6 +3,10 @@
     <Header />
     <div class="container">
       <div class="checkout">
+        <p class="total">Total: €{{ totalPrice() }}</p>
+        <div v-for="(item, index) in cart" :key="'item' + index" :item="item.product">
+          <p class="price">{{ item.product.name }} | €{{ item.product.price }} | {{item.quantity}}x</p>
+        </div>
         <form>
           <input type="email" v-model="order_details.email" placeholder="E-Mail Adresse" />
           <input
@@ -49,14 +53,7 @@
       </div>
       <div class="warenkorb">
         <div class="cart_block">
-        <Cartitem
-          v-for="(item, index) in cart"
-          :key="'item' + index"
-          :item="item.product"
-          :object="item"
-          :quantity="item.quantity"
-          :selectedSize="item.selectedSize"
-        />
+        
       </div>
       </div>
     </div>
@@ -65,13 +62,25 @@
 
 <script>
 import Header from "../components/Header";
-import Cartitem from "../components/CartItem.vue";
+import { mapState } from 'vuex';
+//import Cartitem from "../components/CartItem.vue";
 
 export default {
   name: "Checkout",
   components: {
     Header,
-    Cartitem
+    //Cartitem
+  },
+   mounted(){
+    //this.$store.dispatch("loadUsers");
+    this.$store.dispatch("loadCurrentUser")
+    if(this.currentUser.account_data != undefined){
+      this.login = true;
+    }
+    this.order_details.firstName = this.currentUser.account_data.firstName;
+    this.order_details.lastName = this.currentUser.account_data.lastName;
+    this.order_details.email = this.currentUser.account_data.email;
+    
   },
   data() {
     return {
@@ -85,14 +94,16 @@ export default {
         city: "",
         country: ""
       },
-      products: []
+      products: [],
+      login: false,
     };
   },
   computed: {
     cart() {
       return this.$store.getters.cart;
     },
-    
+    ...mapState(['users']),
+    ...mapState(['currentUser'])
   },
   methods: {
     async checkout(e) {
@@ -118,6 +129,14 @@ export default {
       await this.$store.dispatch("checkout", order);
 
     },
+    totalPrice(){
+      let items = this.$store.getters.cart;
+      let total = 0.0;
+      for(let i = 0; i < items.length; i++){
+        total += items[i].product.price * items[i].quantity;
+      }
+      return total;
+    }
   },
 };
 </script>
@@ -125,25 +144,33 @@ export default {
 <style scoped>
 .container {
   position: absolute;
-  display: flex;
-  flex-direction: row;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  
+  top: 150px;
+  transform: translate(-50%,0%);
+  width: 500px;
+  max-width: calc(100vw - 40px);
 }
 
-.container .checkout {
-  width: 60%;
-}
+input{
+    padding: 10px;
+    border: 2px solid black;
+    width: calc(100% - 24px);
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
 
-.container .warenkorb {
-  width: 40%;
-}
-
-.container form {
-  display: flex;
-  flex-direction: column;
-}
+  button{
+    appearance: none;
+    color: white;
+    background-color: black;
+    padding: 10px;
+    border: 2px solid black;
+    width: 100%;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 20px;
+    cursor: pointer;
+    margin-bottom: 100px;
+  }
 
 </style>

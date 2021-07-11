@@ -2,6 +2,7 @@
     <div class="register">
         <Header />
         <div class="container">
+            <div v-if="!login">
              <p>E-Mail:</p>
             <input type="email" v-model="registerInfo.email" placeholder="E-Mail" />
              <p>Vorame:</p>
@@ -16,6 +17,8 @@
             >
               <p>Du hast bereits einen Account? Log dich ein!</p>
             </router-link>
+            </div>
+            <p class="alreadyLoggedIn" v-if="login">Du bist bereits eingeloggt {{ currentUser.account_data.firstName }}!</p>
         </div>
     </div>
 </template>
@@ -23,11 +26,21 @@
 <script>
 
 import Header from "../components/Header";
+import { mapState } from 'vuex';
 
 export default {
     name: "register",
     components: {
         Header,
+    },
+    computed: {
+        ...mapState(['currentUser'])
+    },
+    mounted(){
+        this.$store.dispatch("loadCurrentUser")
+        if(this.currentUser.account_data != undefined){
+        this.login = true;
+        }
     },
     data(){
         return{
@@ -100,6 +113,10 @@ export default {
     p{
       cursor: pointer;
     }
+  }
+
+  .alreadyLoggedIn{
+    text-align: center;
   }
 
 </style>

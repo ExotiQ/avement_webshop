@@ -10,11 +10,12 @@
     <div class="checkout">
       <div class="top">
         <p class="ges">Gesamt</p>
-        <p class="price">€123</p>
+        <p class="price">€{{ totalPrice() }}</p>
       </div>
       <p class="versand">Versand wird im Checkout kalkuliert</p>
-      <button>Checkout</button>
-      <button>PayPal</button>
+      <router-link :to="{ name: 'Checkout' }">
+        <button>Checkout</button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -32,9 +33,20 @@ export default {
   },
   computed: {
     cart() {
+     
       return this.$store.getters.cart;
     },
   },
+  methods: {
+    totalPrice(){
+      let items = this.$store.getters.cart;
+      let total = 0.0;
+      for(let i = 0; i < items.length; i++){
+        total += items[i].product.price * items[i].quantity;
+      }
+      return total;
+    }
+  }
 };
 </script>
 

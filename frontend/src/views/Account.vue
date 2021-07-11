@@ -14,7 +14,7 @@
               <p>Du hast noch keinen Account? Registriere dich!</p>
             </router-link>
           </form>
-          <p v-if="login">{{currentUser.account_data.firstName}}</p>
+          <p v-if="login">Du bist eingeloggt als {{currentUser.account_data.firstName}} {{currentUser.account_data.lastName}}!</p>
             <button v-if="login" class="logout" @click="logoutUserDirect">Logout</button>
         </div>
     </div>

@@ -3,6 +3,7 @@ const order = express.Router();
 const db = require('../config/database');
 const User = require('../models/e_user')
 const Order = require('../models/e_order')
+const OrderedProduct = require('../models/r_ordered_product')
 
 const jwt = require('jsonwebtoken');
 const authentificate = require('../middleware/authentification.js')
@@ -44,7 +45,7 @@ order.post('/:id', authentificate, async function (req, res) {
 
 //PLACE AN ORDER
 order.post('/add', authentificate, async function (req, res) {
-  const items = req.body.order;
+  const items = req.body.cart;
   const account = await User.findOne({ where: { id: req.user.id } });
   
   Order.create({
@@ -53,11 +54,11 @@ order.post('/add', authentificate, async function (req, res) {
     for(let i = 0; i < items.length; i++){
       OrderedProduct.create({
         o_id: new_order.id,
-        p_id: items[i].id,
+        p_id: items[i].p_v_id,
         quantity: items[i].quantity
       });
     }
-    res.end('Order Placed');
+    res.send('Order Placed');
   }).catch(function (err) {
     res.status(400).json(err);
   });

@@ -4,16 +4,11 @@ const sequelize = require('../config/database');
 class r_ordered_product extends Model {}
 
 r_ordered_product.init({
-    id: {
-        type:           Sequelize.INTEGER,
-        primaryKey:     true,
-        autoIncrement:  true
-    },
     o_id: {
         type:           Sequelize.INTEGER,
         allowNull:      false,
         references: {
-            model:  'e_order',
+            model:  'e_orders',
             key:    'id'
         }
     },
@@ -21,9 +16,14 @@ r_ordered_product.init({
         type:           Sequelize.INTEGER,
         allowNull:      false,
         references: {
-            model:  'e_product_variant',
+            model:  'e_product_variants',
             key:    'id'
         }
+    },
+    quantity:
+    {
+        type:           Sequelize.INTEGER,
+        default:        1
     }
 }, { sequelize, modelName: "r_ordered_product"});
 

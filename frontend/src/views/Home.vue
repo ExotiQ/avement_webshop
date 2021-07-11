@@ -9,26 +9,17 @@
         src="../assets/schriftlogo-white.svg"
         alt="logo"
       />
-      <a href="/shop"
-        ><p style="margin-left: 100px" class="align-left">SHOP</p></a
-      >
-      <a href="/lookbook"
-        ><p style="margin-right: 100px" class="align-right">LOOKBOOK</p></a
-      >
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 export default {
   name: "Home",
   components: {
     Header,
-    Footer,
   },
 };
 </script>

@@ -50,6 +50,7 @@ auth.post('/login', async function (req, res) {
 // REGISTER
 auth.post('/register', async function (req, res) {
     const { firstName, lastName, email, password, admin  } = req.body;
+    console.log(req);
     if(req !== null) {
       const exists = await User.findOne({ where: { email: email } });
       console.log(exists)

@@ -24,7 +24,8 @@
           :selected="selectedSizeId" 
           :id="index"
         />
-        <button class="addbtn" @click="addToCart()">In den Warenkorb</button>
+        <button v-if="inStock()" class="addbtn" @click="addToCart()">In den Warenkorb</button>
+        <button v-if="!inStock()" class="soldoutbtn">sold out</button>
         <!--<p class="info">{{ list.info }}</p>
         <a class="tabelle" href=""><p>Größentabelle</p></a>-->
       </div>
@@ -48,7 +49,7 @@ export default {
     return{
       mainImg: this.list.image[0],
       selectedSize: this.startSelected(),
-      selectedSizeId: 0,
+      selectedSizeId: this.startSelectedId(),
     }
   },
   computed: {
@@ -83,9 +84,18 @@ export default {
       }
     },
     startSelectedId(){
-      if( this.list.stock[0].amount > 0){
-         return this.list.stock[0].size;
+      for(let i = 0; i < this.list.stock.length; i++){
+        if( this.list.stock[i].amount > 0){
+         return i;
+        } 
       }
+      return 0;
+    },
+    inStock(){
+      if(this.list.stock[this.selectedSizeId].amount <= 0){
+        return false;
+      }
+      return true;
     },
   },
 };
@@ -141,6 +151,16 @@ export default {
   margin-top: 15px;
   font-size: 16px;
   transition: 0.5s;
+}
+
+.soldoutbtn{
+  border: 2px solid grey;
+  color: white;
+  background-color: grey;
+  width: calc(100% - 10px);
+  height: 50px;
+  margin-top: 15px;
+  font-size: 16px;
 }
 
 .addbtn:hover {

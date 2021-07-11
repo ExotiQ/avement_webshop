@@ -666,6 +666,9 @@ export default new Vuex.Store({
       state.currentUser = user;
       window.localStorage.currentUser = JSON.stringify(user);
     },
+    REGISTERED(message){
+      console.log(message);
+    },
     addToCart(state, { product, quantity, selectedSize }) {
       let productInCart = state.cart.find((item) => {
         return (
@@ -725,19 +728,39 @@ export default new Vuex.Store({
     logoutUser({ commit }) {
       commit("LOGOUT_USER");
     },
-    async loginUser({ commit }, loginInfo) {
-      console.log(loginInfo);
-      try {
-        let response = await axios.post(
-          "http://localhost:4000/api/auth/login",
-          loginInfo
-        );
-        let user = response.data.accessToken;
+    async loginUser({commit}, loginInfo){
+      console.log(loginInfo)
+      try{
+        let response = await axios({
+          method: 'POST',
+          url: 'http://localhost:4000/api/auth/login', 
+          data: loginInfo,
+          headers: {
+            'Content-Type': 'application/json'
+          }});
+        let user = response.data;
         console.log(user);
-        commit("SET_CURRENT_USER", user);
-      } catch (e) {
-        alert(e);
-        return { e };
+        commit('SET_CURRENT_USER', user);
+        return user;
+      } catch{
+        return {Error: 'Username or Password is incorrect'}
+      }
+    },
+    async registerUser({commit}, loginInfo){
+      console.log(loginInfo);
+      try{
+        let response = await axios({
+          method: 'POST',
+          url: 'http://localhost:4000/api/auth/register', 
+          data: loginInfo,
+          headers: {
+            'Content-Type': 'application/json'
+          }});
+          console.log("2");
+          commit('REGISTER', response);
+        return response;
+      } catch{
+        return {Error: 'E-mail ist bereits vergeben'}
       }
     },
     async checkout({ commit }, order) {

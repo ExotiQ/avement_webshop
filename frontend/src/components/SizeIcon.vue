@@ -12,6 +12,10 @@ export default {
   methods: {
     selectedStyling(){
       var style;
+      if(this.stock <= 0){
+        style = { backgroundColor: 'grey', color: 'white', borderColor: 'Grey'};
+        return style;
+      }
       if(this.selected == this.id){
         style = { backgroundColor: 'black', color: 'white'};
       return style;
@@ -26,6 +30,9 @@ export default {
       type: Number,
     },
     selected: {
+      type: Number,
+    },
+    stock: {
       type: Number,
     }
   },

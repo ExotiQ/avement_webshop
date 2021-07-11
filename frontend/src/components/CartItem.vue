@@ -22,7 +22,7 @@
             </div>
             <div class="number">
                 <p @click="minus()">-</p>
-                <input type="number" min="0" max="5" :value="quantity">
+                <p>{{quantity}}</p>
                 <p @click="plus()">+</p>
             </div>
             <p class="price">{{ item.price }}€</p>

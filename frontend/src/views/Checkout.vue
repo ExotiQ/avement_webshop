@@ -5,7 +5,7 @@
       <div class="checkout">
         <p class="total">Total: €{{ totalPrice() }}</p>
         <div v-for="(item, index) in cart" :key="'item' + index" :item="item.product">
-          <p class="price">{{ item.product.name }} | €{{ item.product.price }} | {{item.quantity}}x</p>
+          <p class="price">{{ item.product.name }} | {{ item.selectedSize}} | €{{ item.product.price }} | {{item.quantity}}x</p>
         </div>
         <form>
           <input type="email" v-model="order_details.email" placeholder="E-Mail Adresse" />

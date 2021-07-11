@@ -35,6 +35,7 @@ export default {
     async loadProducts(){
       this.loading = true;
       let apiUrl = 'http://localhost:4000/api/products/get_all_products';
+      console.log("loaded");
       try{
         let response = await this.axios.get(apiUrl);
         if(this.$route.params.filter == undefined){

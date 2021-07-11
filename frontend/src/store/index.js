@@ -8,12 +8,12 @@ Vue.use(Vuex,VueAxios, axios);
 
 let cart = window.localStorage.getItem('cart');
 
-let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhYTVhMjRiLTEzNDAtNGM5Mi05NTAyLTlhMzVmYjdlYTZlZSIsImlhdCI6MTYyNTg3MTUyMn0.NYl9n0k4yyoreXEQrgUVfxhMIJ9djrqYYFAC5QSvwWU';
+/*let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdhYTVhMjRiLTEzNDAtNGM5Mi05NTAyLTlhMzVmYjdlYTZlZSIsImlhdCI6MTYyNTg3MTUyMn0.NYl9n0k4yyoreXEQrgUVfxhMIJ9djrqYYFAC5QSvwWU';
 
 axios.post("http://api.rumaholi.local/api/post", [], {headers: { 'Authorization' : 'Bearer '+ token}}).then(response => {
     let comments = response.data;
     console.log(comments)
-}) 
+}) */
 
 export default new Vuex.Store({
   state: {
@@ -612,12 +612,6 @@ export default new Vuex.Store({
     fontlist: (state) => {
       return state.fontlist;
     },
-    products: (state) => {
-      return state.products;
-    },
-    tshirts: (state) => {
-      return state.products.tshirts;
-    },
     colors: (state) => {
       return state.colors;
     },
@@ -721,8 +715,17 @@ export default new Vuex.Store({
     logoutUser({commit}){
       commit('LOGOUT_USER')
     },
-    loginUser({commit}, user){
-      commit('SET_CURRENT_USER', user);
+    async loginUser({commit}, loginInfo){
+      console.log(loginInfo)
+      try{
+        let response = await axios.post('http://localhost:4000/api/auth/login', loginInfo);
+        let user = response.data;
+        console.log(user);
+        commit('SET_CURRENT_USER', user);
+      } catch (e){
+        alert(e);
+        return {e}
+      }
     }
   },
   modules: {},

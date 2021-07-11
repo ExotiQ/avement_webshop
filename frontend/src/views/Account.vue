@@ -2,11 +2,16 @@
     <div class="Account">
         <Header />
         <div class="container">
+          <form>
+            <input type="email" v-model="loginInfo.email" placeholder="email" />
+            <input type="password"  v-model="loginInfo.password" placeholder="Passwort" />
+             <button class="login" @click="loginUser">Login</button>
+          </form>
           <p>{{currentUser.firstName}}</p>
           <div v-for="user in users" :key="user.id">{{ user.firstName }}
-            <button class="login" @click="loginUser(user)">Login</button>
+            <button class="login" @click="loginUserDirect(user)">Login</button>
           </div>
-          <button class="logout" @click="logoutUser">Logout</button>
+          <button class="logout" @click="logoutUserDirect">Logout</button>
         </div>
     </div>
 </template>
@@ -25,16 +30,34 @@ export default {
     ...mapState(['currentUser'])
   },
   mounted(){
-    this.$store.dispatch("loadUsers");
+    //this.$store.dispatch("loadUsers");
     this.$store.dispatch("loadCurrentUser")
   },
+  data(){
+    return{
+      loginInfo: {
+        email: 'gesell@example.com',
+        password: 'password',
+      }
+    }
+  },
   methods: {
-    logoutUser(){
+    logoutUserDirect(){
       this.$store.dispatch("logoutUser");
     },
-    loginUser(user){
+    loginUserDirect(user){
       this.$store.dispatch("loginUser", user);
     },
+    async loginUser(){
+      
+      let user = await this.$store.dispatch('loginUser', this.loginInfo);
+      if(user.error){
+        alert(user.error)
+      } else {
+        alert('Thank you for signing in, ' + user.firstName);
+      }
+    },
+    
   }
 }
 </script>

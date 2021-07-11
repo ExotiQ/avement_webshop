@@ -17,10 +17,12 @@ async function main() {
 }
 
 // LOGIN
-auth.get('/login', async function (req, res) {
-  const { username, password } = req.body;
-  if(username !== "" && password !== "") {
-    const account = await User.findOne({ where: { email: username } });
+auth.post('/login', async function (req, res) {
+  
+  const { email, password } = req.body;
+  console.log(email, password);
+  if(email !== "" && password !== "") {
+    const account = await User.findOne({ where: { email: email} });
     if (account) {
       if (await account.validPassword(password)) {
           // Generate an access token
@@ -33,7 +35,7 @@ auth.get('/login', async function (req, res) {
             'email':      account.email,
             'isAdmin':    account.isAdmin
           }
-          res.status(200).json({accessToken, account_data});
+          res.send({accessToken, account_data});
       } else {
           res.status(200).json("Username or password incorrect");
       }

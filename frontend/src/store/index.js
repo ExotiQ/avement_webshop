@@ -612,6 +612,9 @@ export default new Vuex.Store({
     branddata: (state) => {
       return state.branddata;
     },
+    currentUser: (state) => {
+      return state.currentUser;
+    },
     fontlist: (state) => {
       return state.fontlist;
     },
@@ -741,8 +744,13 @@ export default new Vuex.Store({
       try {
         await axios.post(
           "http://localhost:4000/api/order/add",
-          order
+          order, {
+            headers: {
+              'Authorization': `token ${this.currentUser}`
+            }
+          }
         );
+
       } catch (e) {
         alert(e);
         return { e };

@@ -85,35 +85,37 @@ export default {
         city: "",
         country: ""
       },
+      products: []
     };
   },
   computed: {
     cart() {
       return this.$store.getters.cart;
     },
-    order() {
-      let products = [];
+    
+  },
+  methods: {
+    async checkout(e) {
+      e.preventDefault();
 
       for (let index = 0; index < this.cart.length; index++) {
         const element = this.cart[index];
         const product = {
-          "p_v_id": 1,
+          "p_v_id": element.product.stock[0].p_v_id,
           "name":element.product.name,
           "color": element.product.color,
           "price": element.product.price,
           "quantity": element.quantity
         }
-        products.push(product);
+        this.products.push(product);
       }
-      return products;
-    }
-  },
-  methods: {
-    async checkout(e) {
-      e.preventDefault();
-      console.log(this.order)
-
-      await this.$store.dispatch("checkout", this.order);
+      
+      const order = {
+        "cart": 
+        this.products
+      }
+      console.log(order)
+      await this.$store.dispatch("checkout", order);
 
     },
   },
@@ -123,10 +125,20 @@ export default {
 <style scoped>
 .container {
   position: absolute;
+  display: flex;
+  flex-direction: row;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   
+}
+
+.container .checkout {
+  width: 60%;
+}
+
+.container .warenkorb {
+  width: 40%;
 }
 
 .container form {
